@@ -13,8 +13,14 @@ export default class State {
     this.pantbrev = 1450400
   }
 
-  addBorrower(borrower: Borrower) {
+  addBorrower(borrower: Borrower): State {
     this.borrowers = [...this.borrowers, borrower || new Borrower("", 0, 0)];
+
+    return this;
+  }
+
+  removeBorrower(id: string): State {
+    this.borrowers = this.borrowers.filter(borrower => borrower.getId() != id)
 
     return this;
   }
@@ -33,5 +39,9 @@ export default class State {
 
   getDebtRatio(): number {
     return debtRatio(this.getCombinedSalary())
+  }
+
+  getLoan(): number {
+    return this.price - this.getCombinedDownPaymentOrMinimum(this.price)
   }
 }
