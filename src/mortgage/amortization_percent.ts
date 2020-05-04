@@ -1,7 +1,7 @@
 import loanToValue from "./loan_to_value";
 import debtRatio from "./debt_ratio";
 
-function loanToDebtRatioPercent(loan: number, debtRatio: number): number {
+export function loanToDebtRatioPercent(loan: number, debtRatio: number): number {
   if(loan > debtRatio) {
     return 0.01;
   } else {
@@ -9,10 +9,12 @@ function loanToDebtRatioPercent(loan: number, debtRatio: number): number {
   }
 }
 
-function loanToValuePercent(loanToValue: number): number {
-  if(loanToValue <= 0.5) {
+export function loanToValuePercent(price: number, loan: number): number {
+  const loanToValueRatio = loanToValue(price, loan)
+
+  if(loanToValueRatio <= 0.5) {
     return 0;
-  } else if(loanToValue <= 0.7) {
+  } else if(loanToValueRatio <= 0.7) {
     return 0.01;
   } else {
     return 0.02;
@@ -20,5 +22,5 @@ function loanToValuePercent(loanToValue: number): number {
 }
 
 export default function (price: number, loan: number, salary: number): number {
-  return loanToValuePercent(loanToValue(price, loan)) + loanToDebtRatioPercent(loan, debtRatio(salary));
+  return loanToValuePercent(price, loan) + loanToDebtRatioPercent(loan, debtRatio(salary));
 }

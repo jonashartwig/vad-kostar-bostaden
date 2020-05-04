@@ -3,9 +3,10 @@
 	import lagfart from "../mortgage/lagfart"
 	import pantbrev from "../mortgage/pantbrev";
 	import amortization from "../mortgage/amortization";
-	import amortizationPercent from "../mortgage/amortization_percent";
+	import amortizationPercent, { loanToDebtRatioPercent, loanToValuePercent } from "../mortgage/amortization_percent";
 	import amortizationMonth from "../mortgage/amortization_month";
 	import amortizationMonthBorrower from "../mortgage/amortization_month_borrower";
+  import loanToValue from "../mortgage/loan_to_value";
 
   export let state;
 </script>
@@ -54,7 +55,7 @@
         </div>
       </div>
       <div class="col">
-        <div class="card">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Taxes</h5>
             <table class="card-table table">
@@ -87,7 +88,15 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Monthly expenses</h5>
-            <p class="card-text">Your amortization rate is: <b>{ amortizationPercent(state.price, state.getLoan(), state.getCombinedSalary()) * 100 }%</b></p>
+            <p class="card-text">
+              Your amortization rate is: <b>{ amortizationPercent(state.price, state.getLoan(), state.getCombinedSalary()) * 100 }%</b>.
+              {#if loanToDebtRatioPercent(state.getLoan(), state.getDebtRatio()) > 0}
+                Because your loan is higher than the debt ratio 1% is added.
+              {/if}
+              {#if loanToValuePercent(state.price, state.getLoan()) > 0}
+                Because amortization of your loan requires by law {loanToValuePercent(state.price, state.getLoan()) * 100}%.
+              {/if}
+            </p>
             <table class="card-table table">
               <thead>
                 <tr>
