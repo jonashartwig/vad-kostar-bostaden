@@ -71,6 +71,9 @@
 }
 
 .vkb-secondary-color {
-  background-color: #b3c6ff;
+  border-bottom: 1px solid #F68E5F;
+}
+
+footer * a {
   color: white;
 }

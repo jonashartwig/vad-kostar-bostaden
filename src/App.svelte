@@ -51,3 +51,12 @@
 	<Estate bind:state={state} />
 	<Expenses bind:state={state} />
 </main>
+<footer class="page-footer font-small vkb-main-color">
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				Visit us on <a href="https://github.com/jonashartwig/vad-kostar-huset">github</a>
+			</div>
+		</div>
+	</div>
+</footer>
