@@ -32,11 +32,18 @@
     </div>
     <div class="row">
       <div class="col">
-        The resulting loan will be: { state.getLoan() }
+        <p>
+          The resulting loan will be: <b>{ state.getLoan() } kr</b>.
+        </p>
         {#if state.getCombinedDownPayment() }
-          The loan is based on the combined down payment from the assets of: {state.getCombinedDownPayment()}
+          The loan is based on the <u>combined down payment</u> from the assets of: <b>{state.getCombinedDownPayment()} kr</b>.
+          {#if state.getCombinedDownPayment() < requiredDownPayment(state.price) }
+          The available down payment is not enouth. You need to invest <b>{requiredDownPayment(state.price) - state.getCombinedDownPayment()} kr</b> more.
+          {/if}
         {:else}
-          The loan is based on the minimum required downPayment of: {requiredDownPayment(state.price)}
+          <p>
+            The loan is based on the minimum required <u>down payment</u> of: <b>{requiredDownPayment(state.price)} kr</b>.
+          </p>
         {/if}
       </div>
     </div>

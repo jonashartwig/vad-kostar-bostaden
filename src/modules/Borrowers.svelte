@@ -29,29 +29,40 @@
 			</div>
 		</div>
 
-		{#each state.borrowers as borrower}
-			<Borrower bind:borrower={borrower} on:remove={ event => state = state.removeBorrower(event.detail) } />
-		{:else}
 		<div class="row">
 			<div class="col">
-				You need at least one loan taker.
-			</div>
-		</div>
-		{/each}
-
-		<div class="row">
-			<div class="col">
-				Press the plus to add a new asset:
-				<button type="button" class="btn btn-default" on:click={ () => state = state.addBorrower() }>
-					<span class="fas fa-plus"></span>
-				</button>
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">Name</th>
+				      <th scope="col">Salary (kr/month)</th>
+				      <th scope="col">Cash (kr)</th>
+				      <th scope="col">Action</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+						{#each state.borrowers as borrower}
+							<Borrower bind:borrower={borrower} on:remove={ event => state = state.removeBorrower(event.detail) } />
+						{/each}
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						  <td>
+						    <button type="button" class="btn btn-secondary" on:click={ () => state = state.addBorrower() }>
+						      Create
+						    </button>
+						  </td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col">
 				<p>
-					The combined total salary per year is: {state.getCombinedSalary()}
-					That makes the debt ratio: {state.getDebtRatio()}
+					The combined <u>total salary</u> per year is: <b>{state.getCombinedSalary()} kr</b>
+					That makes the <u>debt ratio</u>: <b>{state.getDebtRatio()} kr </b>
 				</p>
 			</div>
 		</div>

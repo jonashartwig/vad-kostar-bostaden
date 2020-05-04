@@ -25,59 +25,93 @@
     </div>
     <div class="row">
       <div class="col">
-        <h3>Down Payment</h3>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Down Payment</h5>
+            <table class="card-table table">
+              <thead>
+                <tr>
+                  <th scope="col">Percentage</th>
+                  <th scope="col">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>10%</td>
+                  <td><b>{downPayment.whenSigned(state.price)} kr</b></td>
+                </tr>
+                <tr>
+                  <td>5%</td>
+                  <td><b>{downPayment.whenAvailable(state.price)} kr</b></td>
+                </tr>
+                <tr>
+                  <td>15%</td>
+                  <td><b>{downPayment.total(state.price)} kr</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Taxes</h5>
+            <table class="card-table table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Percentage</th>
+                  <th scope="col">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lagfart</td>
+                  <td>1,5%</td>
+                  <td><b>{ lagfart(state.price) } kr</b></td>
+                </tr>
+                <tr>
+                  <td>Pantbrev</td>
+                  <td>2%</td>
+                  <td><b>{ pantbrev(state.getLoan(), state.pantbrev) } kr</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row mt-2 mb-2">
       <div class="col">
-        <p>
-          Down payment (when signed): {downPayment.whenSigned(state.price)}
-          Down payment (when handed over): {downPayment.whenAvailable(state.price)}
-          Down payment (total): {downPayment.total(state.price)}
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h3>Lagfart</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <p>
-          Lagfart is a fee required to pay to register you as the new owner. Lagfart is 1,5% of the estate price. The money goes to lantmäteriet.
-          You need to apply for lagfart within 3 months of the purchase. An administrative fee is required of 825 kr.
-          The lagfart for your estate will be: { lagfart(state.price) }
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h3>Pantbrev</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <p>
-          Pantbrev is an insurance for your bank on the value of the estate. It is paid to lantmäteriet. It is 2% of the loan minus existing pantbrev.
-          In addition an administration fee of 375 kr is taken.
-          The pantbrev for your estate will be: { pantbrev(state.getLoan(), state.pantbrev) }
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h3>Monthly expenses</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <p>
-          This section contains a list of monthly expenses.
-          Your amortization rate is: { amortizationPercent(state.price, state.getLoan(), state.getCombinedSalary()) * 100 }%
-          That sums up the amortization per year to be: { amortization(state.price, state.getLoan(), state.getCombinedSalary()) }, which makes it { amortizationMonth(state.price, state.getLoan(), state.getCombinedSalary()) } per month.
-          On a loan taker level that will be { amortizationMonthBorrower(state.price, state.getLoan(), state.getCombinedSalary(), state.borrowers.length) } per month.
-        </p>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Monthly expenses</h5>
+            <p class="card-text">Your amortization rate is: <b>{ amortizationPercent(state.price, state.getLoan(), state.getCombinedSalary()) * 100 }%</b></p>
+            <table class="card-table table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Amount (kr)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>for a whole year</td>
+                  <td><b>{ amortization(state.price, state.getLoan(), state.getCombinedSalary()) } kr</b></td>
+                </tr>
+                <tr>
+                  <td>for a month</td>
+                  <td><b>{ amortizationMonth(state.price, state.getLoan(), state.getCombinedSalary()) } kr</b></td>
+                </tr>
+                <tr>
+                  <td>for a month per person</td>
+                  <td><b>{ amortizationMonthBorrower(state.price, state.getLoan(), state.getCombinedSalary(), state.borrowers.length) } kr</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
