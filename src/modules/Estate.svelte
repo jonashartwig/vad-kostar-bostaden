@@ -13,7 +13,17 @@
     </div>
     <div class="row">
       <div class="col">
-        This section contains information about the estate. Please enter the price and the existing pantbrev. Each estate has existing pantbrev.You can use both fields to investigate how your expanses might change.
+        <p>
+          Let us now look at your estate. Please enter the price and the existing mortgage deed (pantbrev). When you buy a new house you need to pay tax on the amount you loan.
+          <a data-toggle="collapse" href="#estate-help" class="badge" role="button" aria-expanded="true" aria-controls="estate-help">Read more...</a>
+        </p>
+        <p class="collapse" id="estate-help">
+          Each house has a mortgage deed from the previous owner. You have to pay this fee to your bank as a form of insurance. It is calculated based on the prevous existing mortgage deed.
+          It is calculated by substracting the existing mortgage deeds from the loan you have to take loan. You have to pay 2% of that amount.
+          Imagine you want to buy a house worth 5000000kr. You pay the minimum down payment of 750000kr. That results in a loan of 4250000kr.
+          The existing mortgage deeds cover 1200000kr. Then you have to pay 2% of 4250000kr - 1200000kr = 2 % of 3050000kr = 61000kr.
+          In addition there is a fee to buy new mortgage deeds of 375kr.
+        </p>
       </div>
     </div>
     <div class="row">

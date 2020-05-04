@@ -36,9 +36,12 @@
 			<div class="row">
 				<div class="col">
 					<p>
-						TODO: Introduction text
-
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur congue eros vitae leo hendrerit tristique. Curabitur aliquam viverra dui, et iaculis enim aliquet eget. Sed cursus ipsum massa, quis dictum dui ornare quis. Nulla at efficitur risus, id feugiat ex. Ut in dapibus nulla. Nullam vitae nunc lectus. Maecenas vitae lacus turpis. Suspendisse feugiat risus et urna sagittis pretium. Fusce in ornare nisl. Mauris interdum sodales metus, nec tincidunt justo elementum sit amet. Mauris vehicula tincidunt justo ut finibus.
+						This page tries to collect information fot you who wants to buy a place to live in sweden. It will help you understand the costs that await you.
+						Start by adding individuals who will apply for the loan. Adding name and cash is optional, the salary is required. Additional information can be found in each section.
+					</p>
+					<p>
+						We do not save any of the data you enter in the form below. We dont use any cookies or any other form of tracking either.
+						We believe in that you own your data.
 					</p>
 				</div>
 			</div>
