@@ -20,8 +20,20 @@
     </div>
     <div class="row">
       <div class="col">
-        This section provides information about payments requited. The down payment has two steps. First you have to pay 10% of the estate price at the time you sign the contract.
-        When you get access to the estate, which usually comes with the keys, another 5% have to be paid. That makes a total of 15% of the estate price.
+        <p>
+          Now the expensive part. Let us sum up the coming expenses. We group them in four parts: down payment, fees, monthly costs for amortization and intrest.
+          <a data-toggle="collapse" data-target=".multi-collapse-expenses" href="#lenders-help" class="badge" role="button" aria-expanded="true" aria-controls="expenses-help-1 expenses-help-2">Read more...</a>
+        </p>
+				<p class="collapse multi-collapse-expenses" id="expenses-help-1">
+          Down payment is made in 2 steps. The first step is payed immidiately after you sign the contract finalizing the affair. This fee is set to 10%.
+          The second fee is payed when the estate is handed over to you and it is ready to move in. It is set to 5%. In total that is 15%.
+        </p>
+				<p class="collapse multi-collapse-expenses" id="expenses-help-2">
+          There are two fees that have to be payed: mortgage deed and title deed.
+          The title deed is payed within three months after you bought the estate. It is payed to Lantmäteriet and registers you as the new owner.
+          An additional fee is required of 825kr to create new title deed. It is calculates as 1,5% of the total value of the purchase. If you buy a hous worth 5000000kr then title deed is 1,5% of 5000000kr which calculates to 75000kr.
+          See section estate for information about mortgage deed.
+        </p>
       </div>
     </div>
     <div class="row">

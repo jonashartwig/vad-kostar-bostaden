@@ -15,15 +15,15 @@
 			<div class="col">
 				<p>
 					Help us understand your financial situation. Please enter your salary in kr/month before tax. The salary is required for the debt ratio (skuldkvot).
-					Debt ratio is one of the factors that determine your amortization rate. <a data-toggle="collapse" data-target=".multi-collapse" href="#lenders-help" class="badge" role="button" aria-expanded="true" aria-controls="lenders-help-1 lenders-help-2">Read more...</a>
+					Debt ratio is one of the factors that determine your amortization rate. <a data-toggle="collapse" data-target=".multi-collapse-lenders" href="#lenders-help" class="badge" role="button" aria-expanded="true" aria-controls="lenders-help-1 lenders-help-2">Read more...</a>
 				</p>
-				<p class="collapse multi-collapse" id="lenders-help-1">
+				<p class="collapse multi-collapse-lenders" id="lenders-help-1">
 					The debt ratio is calculated by multiplying the sum of the lenders yearly salary by 4,5.
 					Imagine you have two lenders: Jonas and Emelie. Jonas earns 35000kr a month before tax and Emelie earns 41500kr a month before tax.
 					The debt ratio is therefore: (12 * 35000kr + 12 * 41500kr) * 4,5 = (420000kr + 498000kr) * 4,5 = 4131000kr.
 					If the loan exceeds 4131000kr you need to amortize an additional 1%.
 				</p>
-				<p class="collapse multi-collapse" id="lenders-help-2">
+				<p class="collapse multi-collapse-lenders" id="lenders-help-2">
 					The down payment is calculeted as 15% of the final price of your estate. This is the required minimum. You may use the fields for cash to identify each individuals assets.
 					You may leave it empty. All other calculations below assume that you will pay the minimum amount.
 					You can use those fields to understand how amortization changes in case you add more down payment.
