@@ -26,11 +26,6 @@ from the root of the directory run: npm install && npm run dev
 
 ### building it
 
-from the root dir run: ```
-npm ci && \
-  npm run build && \
-  npm run test && \
-  docker build . -t vad-kostar-bostaden
-```
+from the root dir run: `docker build . -t vad-kostar-bostaden`
 
 Then run `docker run -p 8080:80 vad-kostar-bostaden` and navigate to localhost:8080.
