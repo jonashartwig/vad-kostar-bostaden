@@ -22,7 +22,7 @@
       <div class="col">
         <p>
           Now the expensive part. Let us sum up the coming expenses. We group them in four parts: down payment, fees, monthly costs for amortization and intrest.
-          <a data-toggle="collapse" data-target=".multi-collapse-expenses" href="#lenders-help" class="badge" role="button" aria-expanded="true" aria-controls="expenses-help-1 expenses-help-2">Read more...</a>
+          <a id="expenses-show-help" data-toggle="collapse" data-target=".multi-collapse-expenses" href="#expenses-help" class="badge collapse show multi-collapse-expenses collapse-no-transition" role="button" aria-expanded="true" aria-controls="expenses-help-1 expenses-help-2 expenses-show-help">Read more...</a>
         </p>
 				<p class="collapse multi-collapse-expenses" id="expenses-help-1">
           Down payment is made in 2 steps. The first step is payed immidiately after you sign the contract finalizing the affair. This fee is set to 10%.
@@ -33,6 +33,7 @@
           The title deed is payed within three months after you bought the estate. It is payed to Lantmäteriet and registers you as the new owner.
           An additional fee is required of 825kr to create new title deed. It is calculates as 1,5% of the total value of the purchase. If you buy a hous worth 5000000kr then title deed is 1,5% of 5000000kr which calculates to 75000kr.
           See section estate for information about mortgage deed.
+          <a data-toggle="collapse" data-target=".multi-collapse-expenses" href="#expenses-help" class="badge" role="button" aria-expanded="true" aria-controls="expenses-show-help">Show less...</a>
         </p>
       </div>
     </div>
