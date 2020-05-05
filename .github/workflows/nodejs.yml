@@ -27,10 +27,19 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: npm run test
+    - uses: actions/upload-artifact@v2
+      with:
+        name: js-app
+        path: public
   build-docker:
     runs-on: ubuntu-latest
     needs: [build-html-css-js]
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: js-app
+          path: public
       - uses: docker/build-push-action@v1.1.0
         with:
           #username: ${{ secrets.DOCKER_USERNAME }}
