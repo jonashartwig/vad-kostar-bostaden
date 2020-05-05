@@ -1,12 +1,19 @@
 <script>
+	import { register, init, getLocaleFromNavigator } from 'svelte-i18n';
 	import "./styles.css";
 	import State from "./dto/state";
 	import Borrowers from "./modules/Borrowers";
 	import Estate from "./modules/Estate";
 	import Expenses from "./modules/Expenses";
 
-	export let state = new State();
+	init({
+	  fallbackLocale: "en",
+	  initialLocale: "en"
+	});
+
 	let language = "gb"
+
+	export let state = new State();
 </script>
 
 <header class="vkb-main-color">

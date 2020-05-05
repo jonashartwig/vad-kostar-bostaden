@@ -1,4 +1,5 @@
 <script>
+  import { number } from "svelte-i18n";
   import * as downPayment from "../mortgage/down_payment";
 	import lagfart from "../mortgage/lagfart"
 	import pantbrev from "../mortgage/pantbrev";
@@ -31,7 +32,7 @@
 				<p class="collapse multi-collapse-expenses" id="expenses-help-2">
           There are two taxes that have to be payed: mortgage deed (pantbrev) and title deed (lagfart).
           The title deed is payed within three months after you bought the estate. It usually is paid right together with the second down payment. It is payed to Lantmäteriet and registers you as the new owner.
-          An additional fee is required of 825kr to create new title deed. It is calculates as 1,5% of the total value of the purchase. If you buy a hous worth 5000000kr then title deed is 1,5% of 5000000kr which calculates to 75000kr.
+          An additional fee is required of 825 kr to create new title deed. It is calculates as 1,5% of the total value of the purchase. If you buy a hous worth {$number(5000000)} kr then title deed is 1,5% of {$number(5000000)} kr which calculates to {$number(75000)} kr.
           See section estate for information about mortgage deed.
           <a data-toggle="collapse" data-target=".multi-collapse-expenses" href="#expenses-help" class="badge" role="button" aria-expanded="true" aria-controls="expenses-show-help">Show less...</a>
         </p>
@@ -52,15 +53,15 @@
               <tbody>
                 <tr>
                   <td>10%</td>
-                  <td><b>{downPayment.whenSigned(state.price)} kr</b></td>
+                  <td><b>{$number(downPayment.whenSigned(state.price))} kr</b></td>
                 </tr>
                 <tr>
                   <td>5%</td>
-                  <td><b>{downPayment.whenAvailable(state.price)} kr</b></td>
+                  <td><b>{$number(downPayment.whenAvailable(state.price))} kr</b></td>
                 </tr>
                 <tr>
                   <td>15%</td>
-                  <td><b>{downPayment.total(state.price)} kr</b></td>
+                  <td><b>{$number(downPayment.total(state.price))} kr</b></td>
                 </tr>
               </tbody>
             </table>
@@ -83,12 +84,12 @@
                 <tr>
                   <td>Lagfart</td>
                   <td>1,5%</td>
-                  <td><b>{ lagfart(state.price) } kr</b></td>
+                  <td><b>{ $number(lagfart(state.price)) } kr</b></td>
                 </tr>
                 <tr>
                   <td>Pantbrev</td>
                   <td>2%</td>
-                  <td><b>{ pantbrev(state.getLoan(), state.pantbrev) } kr</b></td>
+                  <td><b>{ $number(pantbrev(state.getLoan(), state.pantbrev)) } kr</b></td>
                 </tr>
               </tbody>
             </table>
@@ -102,12 +103,12 @@
           <div class="card-body">
             <h5 class="card-title">Monthly expenses</h5>
             <p class="card-text">
-              Your amortization rate is: <b>{ amortizationPercent(state.price, state.getLoan(), state.getCombinedSalary()) * 100 }%</b>.
+              Your amortization rate is: <b>{ $number(amortizationPercent(state.price, state.getLoan(), state.getCombinedSalary()) * 100) }%</b>.
               {#if loanToDebtRatioPercent(state.getLoan(), state.getDebtRatio()) > 0}
                 Because your loan is higher than the debt ratio 1% is added.
               {/if}
               {#if loanToValuePercent(state.price, state.getLoan()) > 0}
-                Because amortization of your loan requires by law {loanToValuePercent(state.price, state.getLoan()) * 100}%.
+                Because amortization of your loan requires by law { $number(loanToValuePercent(state.price, state.getLoan()) * 100) }%.
               {/if}
             </p>
             <table class="card-table table">
@@ -120,15 +121,15 @@
               <tbody>
                 <tr>
                   <td>for a whole year</td>
-                  <td><b>{ amortization(state.price, state.getLoan(), state.getCombinedSalary()) } kr</b></td>
+                  <td><b>{ $number(amortization(state.price, state.getLoan(), state.getCombinedSalary())) } kr</b></td>
                 </tr>
                 <tr>
                   <td>for a month</td>
-                  <td><b>{ amortizationMonth(state.price, state.getLoan(), state.getCombinedSalary()) } kr</b></td>
+                  <td><b>{ $number(amortizationMonth(state.price, state.getLoan(), state.getCombinedSalary())) } kr</b></td>
                 </tr>
                 <tr>
                   <td>for a month per person</td>
-                  <td><b>{ amortizationMonthBorrower(state.price, state.getLoan(), state.getCombinedSalary(), state.borrowers.length) } kr</b></td>
+                  <td><b>{ $number(amortizationMonthBorrower(state.price, state.getLoan(), state.getCombinedSalary(), state.borrowers.length)) } kr</b></td>
                 </tr>
               </tbody>
             </table>

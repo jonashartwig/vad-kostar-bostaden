@@ -1,4 +1,5 @@
 <script>
+  import { number } from "svelte-i18n";
 	import Borrower from "./Borrower.svelte"
 
 	export let state;
@@ -20,9 +21,9 @@
 				</p>
 				<p class="collapse multi-collapse-lenders" id="lenders-help-1">
 					The debt ratio is calculated by multiplying the sum of the lenders yearly salary by 4,5.
-					Imagine you have two lenders: Jonas and Emelie. Jonas earns 35000kr a month before tax and Emelie earns 41500kr a month before tax.
-					The debt ratio is therefore: (12 * 35000kr + 12 * 41500kr) * 4,5 = (420000kr + 498000kr) * 4,5 = 4131000kr.
-					If the loan exceeds 4131000kr you need to amortize an additional 1%.
+					Imagine you have two lenders: Jonas and Emelie. Jonas earns { $number(35000) } kr a month before tax and Emelie earns { $number(41500) } kr a month before tax.
+					The debt ratio is therefore: (12 * { $number(35000) } kr + 12 * { $number(41500) } kr) * { $number(4.5) } = ({ $number(420000) } kr + { $number(498000) } kr) * { $number(4.5) } = { $number(4131000) } kr.
+					If the loan exceeds { $number(4131000) } kr you need to amortize an additional 1%.
 				</p>
 				<p class="collapse multi-collapse-lenders" id="lenders-help-2">
 					The down payment is calculeted as 15% of the final price of your estate. This is the required minimum. You may use the fields for cash to identify each individuals assets.
@@ -64,8 +65,8 @@
 		<div class="row">
 			<div class="col">
 				<p>
-					The combined <u>total salary</u> per year is: <b>{state.getCombinedSalary()} kr</b>.
-					The resulting <u>debt ratio</u> is therefore <b>{state.getDebtRatio()} kr </b>.
+					The combined <u>total salary</u> per year is: <b>{ $number(state.getCombinedSalary()) } kr</b>.
+					The resulting <u>debt ratio</u> is therefore <b>{ $number(state.getDebtRatio()) } kr </b>.
 				</p>
 			</div>
 		</div>
