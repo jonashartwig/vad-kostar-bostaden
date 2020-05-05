@@ -29,8 +29,8 @@
           The second fee is payed when the estate is handed over to you and it is ready to move in. It is set to 5%. In total that is 15%.
         </p>
 				<p class="collapse multi-collapse-expenses" id="expenses-help-2">
-          There are two fees that have to be payed: mortgage deed and title deed.
-          The title deed is payed within three months after you bought the estate. It is payed to Lantmäteriet and registers you as the new owner.
+          There are two taxes that have to be payed: mortgage deed (pantbrev) and title deed (lagfart).
+          The title deed is payed within three months after you bought the estate. It usually is paid right together with the second down payment. It is payed to Lantmäteriet and registers you as the new owner.
           An additional fee is required of 825kr to create new title deed. It is calculates as 1,5% of the total value of the purchase. If you buy a hous worth 5000000kr then title deed is 1,5% of 5000000kr which calculates to 75000kr.
           See section estate for information about mortgage deed.
           <a data-toggle="collapse" data-target=".multi-collapse-expenses" href="#expenses-help" class="badge" role="button" aria-expanded="true" aria-controls="expenses-show-help">Show less...</a>
