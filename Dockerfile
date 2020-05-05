@@ -1,7 +1,3 @@
-FROM node:14-alpine3.11
+FROM nginx:1.17.10-alpine
 
-WORKDIR /app
-
-EXPOSE 8080
-
-CMD cd /app && npm install && npm run dev
+COPY public/* /usr/share/nginx/html/
