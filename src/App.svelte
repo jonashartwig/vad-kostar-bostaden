@@ -55,7 +55,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col text-center">
-				Visit us on <a href="https://github.com/jonashartwig/vad-kostar-huset">github</a>
+				Visit us on <a href="https://github.com/jonashartwig/vad-kostar-bostaden">github</a>
 			</div>
 		</div>
 	</div>
