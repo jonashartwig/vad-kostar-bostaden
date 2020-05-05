@@ -36,3 +36,4 @@ jobs:
           #password: ${{ secrets.DOCKER_PASSWORD }}
           repository: jonashartwig/vad-kostar-bostaden
           tags: latest
+          push: false
