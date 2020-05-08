@@ -53,7 +53,7 @@
 							<td></td>
 							<td></td>
 						  <td>
-						    <button type="button" class="btn btn-secondary" on:click={ () => state = state.addBorrower() }>
+						    <button type="button" class="float-right btn btn-secondary" on:click={ () => state = state.addBorrower() }>
 						      Create
 						    </button>
 						  </td>

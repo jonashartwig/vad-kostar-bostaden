@@ -1,17 +1,25 @@
 <script>
-	import { register, init, getLocaleFromNavigator } from 'svelte-i18n';
+	import { register, init, getLocaleFromNavigator, locale, addMessages, locales } from 'svelte-i18n';
 	import "./styles.css";
 	import State from "./dto/state";
 	import Borrowers from "./modules/Borrowers";
 	import Estate from "./modules/Estate";
 	import Expenses from "./modules/Expenses";
 
+	const initalLanguage = "gb";
+
 	init({
-	  fallbackLocale: "en",
-	  initialLocale: "en"
+	  fallbackLocale: initalLanguage,
+	  initialLocale: initalLanguage
 	});
 
-	let language = "gb"
+	let language = initalLanguage;
+
+	locale.subscribe(val => language = val)
+
+	addMessages(initalLanguage, {})
+	addMessages("se", {})
+	addMessages("de", {})
 
 	export let state = new State();
 </script>
@@ -28,11 +36,11 @@
 					<div class="nav-link dropdown-toggle" id="language-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" >
 						<span class="flag-icon flag-icon-{language}"></span> Language
 					</div>
-					<div class="dropdown-menu vkb-main-color" aria-labelledby="language-toggle">
-							<div class="dropdown-item vkb-main-color" on:click={ () => language = "de" }><span class="flag-icon flag-icon-de"> </span>  German</div>
-							<div class="dropdown-item vkb-main-color" on:click={ () => language = "se" }><span class="flag-icon flag-icon-se"> </span>  Swedish</div>
-							<div class="dropdown-item vkb-main-color" on:click={ () => language = "gb" }><span class="flag-icon flag-icon-gb"> </span>  English</div>
-					</div>
+				<div class="dropdown-menu vkb-main-color" aria-labelledby="language-toggle">
+					<div class="dropdown-item vkb-main-color" on:click={ () => locale.set("de") }><span class="flag-icon flag-icon-de"> </span>  German</div>
+					<div class="dropdown-item vkb-main-color" on:click={ () => locale.set("se") }><span class="flag-icon flag-icon-se"> </span>  Swedish</div>
+					<div class="dropdown-item vkb-main-color" on:click={ () => locale.set("gb") }><span class="flag-icon flag-icon-gb"> </span>  English</div>
+				</div>
 			</div>
 		</div>
 	</div>
