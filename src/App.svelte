@@ -1,25 +1,33 @@
 <script>
-	import { register, init, getLocaleFromNavigator, locale, addMessages, locales } from 'svelte-i18n';
+	import { _, register, init, getLocaleFromNavigator, locale, addMessages, locales } from 'svelte-i18n';
 	import "./styles.css";
 	import State from "./dto/state";
 	import Borrowers from "./modules/Borrowers";
 	import Estate from "./modules/Estate";
 	import Expenses from "./modules/Expenses";
+	import * as language from "./modules/language";
+	import en from "./translations/en.json"
+	import de from "./translations/de.json"
+	import sv from "./translations/sv.json"
+	import fi from "./translations/fi.json"
 
-	const initalLanguage = "gb";
+	const browserLanguage = language.getBrowserLanguage(),
+		initialLanguage = language.getInitialLanguage(),
+		availableLanguages = Object.keys(language.languageToCountryMap);
 
 	init({
-	  fallbackLocale: initalLanguage,
-	  initialLocale: initalLanguage
+	  fallbackLocale: initialLanguage,
+	  initialLocale: initialLanguage
 	});
 
-	let language = initalLanguage;
+	let currentLanguage = initialLanguage;
 
-	locale.subscribe(val => language = val)
+	locale.subscribe(val => currentLanguage = val);
 
-	addMessages(initalLanguage, {})
-	addMessages("se", {})
-	addMessages("de", {})
+	addMessages("en", en);
+	addMessages("sv", sv);
+	addMessages("de", de);
+	addMessages("fi", fi);
 
 	export let state = new State();
 </script>
@@ -29,17 +37,17 @@
 		<div class="row">
 			<div class="col-9">
 				<h1>
-					Vad kostar bostaden?
+					{ $_("title") }
 				</h1>
 			</div>
 			<div class="col-3 dropdown vkb-main-color">
 					<div class="nav-link dropdown-toggle" id="language-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" >
-						<span class="flag-icon flag-icon-{language}"></span> Language
+						<span class="flag-icon flag-icon-{language.languageToCountryMap[currentLanguage].countryShort}"></span> { $_("language") }
 					</div>
 				<div class="dropdown-menu vkb-main-color" aria-labelledby="language-toggle">
-					<div class="dropdown-item vkb-main-color" on:click={ () => locale.set("de") }><span class="flag-icon flag-icon-de"> </span>  German</div>
-					<div class="dropdown-item vkb-main-color" on:click={ () => locale.set("se") }><span class="flag-icon flag-icon-se"> </span>  Swedish</div>
-					<div class="dropdown-item vkb-main-color" on:click={ () => locale.set("gb") }><span class="flag-icon flag-icon-gb"> </span>  English</div>
+					{#each availableLanguages as availableLanguage}
+						<div class="dropdown-item vkb-main-color" on:click={ () => locale.set(availableLanguage) }><span class="flag-icon flag-icon-{language.languageToCountryMap[availableLanguage].countryShort}"> </span>  { language.languageToCountryMap[availableLanguage].displayName }</div>
+					{/each}
 				</div>
 			</div>
 		</div>
@@ -51,7 +59,7 @@
 			<div class="row">
 				<div class="col">
 					<p>
-						This page tries to collect information fot you who wants to buy a place to live in sweden. It will help you understand the costs that await you.
+						This page tries to collect information for you who wants to buy a place to live in Sweden. It will help you understand the costs that await you.
 						Start by adding individuals who will apply for the loan. Adding name and cash is optional, the salary is required. Additional information can be found in each section.
 					</p>
 					<p>
