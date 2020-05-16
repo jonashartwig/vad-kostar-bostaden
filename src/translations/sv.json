@@ -2,5 +2,8 @@
   "title": "Vad kostar bostaden?",
   "language": "Språk",
   "showMore": "Visa mer",
-  "showLess": "Visa mindre"
+  "showLess": "Visa mindre",
+  "footer": {
+    "visitUs": "Besök oss på"
+  }
 }

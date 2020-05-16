@@ -2,5 +2,8 @@
   "title": "Wieviel kostet die Immobilie?",
   "language": "Sprache",
   "showMore": "Mehr anzeigen",
-  "showLess": "Weniger anzeigen"
+  "showLess": "Weniger anzeigen",
+  "footer": {
+    "visitUs": "Besuch uns auf"
+  }
 }

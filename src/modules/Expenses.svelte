@@ -1,10 +1,10 @@
 <script>
   import { _, number } from "svelte-i18n";
   import * as downPayment from "../mortgage/down_payment";
-	import titleDeed from "../mortgage/title_deed"
-	import mortgageDeed from "../mortgage/mortgage_deed";
+	import titleDeed, { fee as titleDeedFee, percentage as titleDeedPercent } from "../mortgage/title_deed"
+	import mortgageDeed, { percentage as mortgageDeedPercent } from "../mortgage/mortgage_deed";
 	import amortization from "../mortgage/amortization";
-	import amortizationPercent, { loanToDebtRatioPercent, loanToValuePercent } from "../mortgage/amortization_percent";
+	import amortizationPercent, { loanToDebtRatioPercent, loanToValuePercent, isLoanMoreThenHalfButLessThenLoanLevel, loanLevelValueStep1, loanLevelValueStep2, isLoanHalfOrLessOfPrice } from "../mortgage/amortization_percent";
 	import amortizationMonth from "../mortgage/amortization_month";
 	import amortizationMonthBorrower from "../mortgage/amortization_month_borrower";
   import loanToValue from "../mortgage/loan_to_value";
@@ -16,24 +16,39 @@
 	<div class="container">
     <div class="row vkb-secondary-color">
       <div class="col">
-        <h2>Expenses</h2>
+        <h2>{ $_("expenses.title") }</h2>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <p>
-          Now the expensive part. Let us sum up the coming expenses. We group them in four parts: down payment, fees, monthly costs for amortization and intrest.
+          { $_("expenses.introduction") }
           <a id="expenses-show-help" data-toggle="collapse" data-target=".multi-collapse-expenses" href="#expenses-help" class="badge collapse show multi-collapse-expenses collapse-no-transition" role="button" aria-expanded="true" aria-controls="expenses-help-1 expenses-help-2 expenses-show-help">{ $_("showMore") }...</a>
         </p>
 				<p class="collapse multi-collapse-expenses" id="expenses-help-1">
-          Down payment is made in 2 steps. The first step is payed immidiately after you sign the contract finalizing the affair. This fee is set to 10%.
-          The second fee is payed when the estate is handed over to you and it is ready to move in. It is set to 5%. In total that is 15%.
+          {
+            $_({
+              id: "expenses.downPayment",
+              values: {
+                whenSigned: $number(downPayment.percentageWhenSigned * 100),
+                whenAvailable: $number(downPayment.percentageWhenAvailable * 100),
+                total: $number((downPayment.percentageWhenAvailable + downPayment.percentageWhenSigned) * 100)
+              }
+            })
+          }
         </p>
 				<p class="collapse multi-collapse-expenses" id="expenses-help-2">
-          There are two taxes that have to be payed: mortgage deed (pantbrev) and title deed (lagfart).
-          The title deed is payed within three months after you bought the estate. It usually is paid right together with the second down payment. It is payed to Lantmäteriet and registers you as the new owner.
-          An additional fee is required of 825 kr to create new title deed. It is calculates as 1,5% of the total value of the purchase. If you buy a hous worth {$number(5000000)} kr then title deed is 1,5% of {$number(5000000)} kr which calculates to {$number(75000)} kr.
-          See section estate for information about mortgage deed.
+          {
+            $_({
+              id: "expenses.taxes",
+              values: {
+                titleDeedFee: $number(titleDeedFee),
+                titleDeedPercent: $number(titleDeedPercent * 100),
+                price: $number(5000000),
+                titleDeed: $number(75000)
+              }
+            })
+          }
           <a data-toggle="collapse" data-target=".multi-collapse-expenses" href="#expenses-help" class="badge" role="button" aria-expanded="true" aria-controls="expenses-show-help">{ $_("showLess") }...</a>
         </p>
       </div>
@@ -42,26 +57,26 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Down Payment</h5>
+            <h5 class="card-title">{ $_("downPayment") }</h5>
             <table class="card-table table">
               <thead>
                 <tr>
-                  <th scope="col">Percentage</th>
-                  <th scope="col">Amount</th>
+                  <th scope="col">{ $_("expenses.card.percentage") }</th>
+                  <th scope="col">{ $_("expenses.card.amount") }</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>10%</td>
-                  <td><b>{$number(downPayment.whenSigned(state.price))} kr</b></td>
+                  <td>{ $number(downPayment.percentageWhenSigned * 100) }%</td>
+                  <td><b>{ $number(downPayment.whenSigned(state.price)) }</b></td>
                 </tr>
                 <tr>
-                  <td>5%</td>
-                  <td><b>{$number(downPayment.whenAvailable(state.price))} kr</b></td>
+                  <td>{ $number(downPayment.percentageWhenAvailable * 100) }%</td>
+                  <td><b>{ $number(downPayment.whenAvailable(state.price)) }</b></td>
                 </tr>
                 <tr>
-                  <td>15%</td>
-                  <td><b>{$number(downPayment.total(state.price))} kr</b></td>
+                  <td>{ $number((downPayment.percentageWhenAvailable + downPayment.percentageWhenSigned) * 100) }%</td>
+                  <td><b>{ $number(downPayment.total(state.price)) }</b></td>
                 </tr>
               </tbody>
             </table>
@@ -71,25 +86,25 @@
       <div class="col">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title">Taxes</h5>
+            <h5 class="card-title">{ $_("expenses.card.taxes.title") }</h5>
             <table class="card-table table">
               <thead>
                 <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Percentage</th>
-                  <th scope="col">Amount</th>
+                  <th scope="col">{ $_("expenses.card.name") }</th>
+                  <th scope="col">{ $_("expenses.card.percentage") }</th>
+                  <th scope="col">{ $_("expenses.card.amount") }</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Lagfart</td>
-                  <td>1,5%</td>
-                  <td><b>{ $number(titleDeed(state.price)) } kr</b></td>
+                  <td>{ $_("titleDeed") }</td>
+                  <td>{ $number(titleDeedPercent * 100) }%</td>
+                  <td><b>{ $number(titleDeed(state.price)) }</b></td>
                 </tr>
                 <tr>
-                  <td>Pantbrev</td>
-                  <td>2%</td>
-                  <td><b>{ $number(mortgageDeed(state.getLoan(), state.pantbrev)) } kr</b></td>
+                  <td>{ $_("mortgageDeed") }</td>
+                  <td>{ $number(mortgageDeedPercent * 100) }%</td>
+                  <td><b>{ $number(mortgageDeed(state.getLoan(), state.pantbrev)) }</b></td>
                 </tr>
               </tbody>
             </table>
@@ -101,35 +116,59 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Monthly expenses</h5>
+            <h5 class="card-title">{ $_("expenses.card.monthlyExpenses.title") }</h5>
             <p class="card-text">
-              Your amortization rate is: <b>{ $number(amortizationPercent(state.price, state.getLoan(), state.getCombinedSalary()) * 100) }%</b>.
-              {#if loanToDebtRatioPercent(state.getLoan(), state.getDebtRatio()) > 0}
-                Because your loan is higher than the debt ratio 1% is added.
+              { @html
+                $_({
+                  id: "expenses.card.monthlyExpenses.summary",
+                  values: {
+                    amortizationRate: $number(amortizationPercent(state.price, state.getLoan(), state.getCombinedSalary()) * 100)}
+                })
+              }
+              {#if loanToDebtRatioPercent(state.getLoan(), state.getDebtRatio()) > 0 }
+                { $_("expenses.card.monthlyExpenses.becauseOfDebtRatio") }
               {/if}
-              {#if loanToValuePercent(state.price, state.getLoan()) > 0}
-                Because amortization of your loan requires by law { $number(loanToValuePercent(state.price, state.getLoan()) * 100) }%.
+              {#if isLoanMoreThenHalfButLessThenLoanLevel(state.price, state.getLoan()) }
+                {
+                  $_({
+                    id: "expenses.card.monthlyExpenses.becauseOfLoanLessThan70",
+                    values: {
+                      level1: $number(loanLevelValueStep1 * 100),
+                      level2: $number(loanLevelValueStep2 * 100)
+                    }
+                  })
+                }
+              {/if}
+              {#if !isLoanHalfOrLessOfPrice(state.price, state.getLoan()) && !isLoanMoreThenHalfButLessThenLoanLevel(state.price, state.getLoan()) }
+                {
+                  $_({
+                    id: "expenses.card.monthlyExpenses.becauseOfLoanMoreThan70",
+                    values: {
+                      level: $number(loanLevelValueStep1 * 100)
+                    }
+                  })
+                }
               {/if}
             </p>
             <table class="card-table table">
               <thead>
                 <tr>
                   <th scope="col"></th>
-                  <th scope="col">Amount (kr)</th>
+                  <th scope="col">{ $_("expenses.card.amount") }</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>for a whole year</td>
-                  <td><b>{ $number(amortization(state.price, state.getLoan(), state.getCombinedSalary())) } kr</b></td>
+                  <td>{ $_("expenses.card.monthlyExpenses.table.forYear") }</td>
+                  <td><b>{ $number(amortization(state.price, state.getLoan(), state.getCombinedSalary())) }</b></td>
                 </tr>
                 <tr>
-                  <td>for a month</td>
-                  <td><b>{ $number(amortizationMonth(state.price, state.getLoan(), state.getCombinedSalary())) } kr</b></td>
+                  <td>{ $_("expenses.card.monthlyExpenses.table.forMonth") }</td>
+                  <td><b>{ $number(amortizationMonth(state.price, state.getLoan(), state.getCombinedSalary())) }</b></td>
                 </tr>
                 <tr>
-                  <td>for a month per person</td>
-                  <td><b>{ $number(amortizationMonthBorrower(state.price, state.getLoan(), state.getCombinedSalary(), state.borrowers.length)) } kr</b></td>
+                  <td>{ $_("expenses.card.monthlyExpenses.table.forMonthPerLender") }</td>
+                  <td><b>{ $number(amortizationMonthBorrower(state.price, state.getLoan(), state.getCombinedSalary(), state.borrowers.length)) }</b></td>
                 </tr>
               </tbody>
             </table>

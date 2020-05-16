@@ -3,6 +3,9 @@
   "language": "Language",
   "showMore": "Show more",
   "showLess": "Show less",
+  "downPayment": "Down Payment (kontantinsats)",
+  "mortgageDeed": "Mortgage Deed (pantbrev)",
+  "titleDeed": "Title Deed (lagfart)",
   "introduction": {
     "welcome": "This page tries to collect information for you who wants to buy a place to live in Sweden. It will help you understand the costs that await you. Start by adding individuals who will apply for the loan. Adding name and cash is optional, the salary is required. Additional information can be found in each section.",
     "dataPolicy": "We do not save any of the data you enter in the form below. We dont use any cookies or any other form of tracking either. We believe in that you own your data."
@@ -31,5 +34,37 @@
     "basedOnMinimumDownPayment": "The loan is based on the minimum required <u>down payment</u> of: <b>{ downPayment } kr</b>.",
     "basedOnExistingDownPayment": "The loan is based on the <u>combined down payment</u> from the assets of: <b>{ downPayment } kr</b>.",
     "insufficientDownPayment": "The available down payment is not enouth. You need to invest <b>{ missingAmount } kr</b> more."
+  },
+  "footer": {
+    "visitUs": "Visit us on"
+  },
+  "expenses": {
+    "title": "Expenses",
+    "introduction": "Now the expensive part. Let us sum up the coming expenses. We group them in four parts: down payment, fees, monthly costs for amortization and intrest.",
+    "downPayment": "Down payment is made in 2 steps. The first step is payed immidiately after you sign the contract finalizing the affair. This fee is set to { whenSigned }%. The second fee is payed when the estate is handed over to you and it is ready to move in. It is set to { whenAvailable }%. In total that is { total }%.",
+    "taxes": "There are two taxes that have to be payed: mortgage deed (pantbrev) and title deed (lagfart). The title deed is payed within three months after you bought the estate. It usually is paid right together with the second down payment. It is payed to Lantmäteriet and registers you as the new owner. An additional fee is required of { titleDeedFee } kr to create new title deed. It is calculates as { titleDeedPercent }% of the total value of the purchase. If you buy a hous worth { price } kr then title deed is { titleDeed } kr. See section estate for information about mortgage deed.",
+    "card": {
+      "name": "Name",
+      "percentage": "Percentage",
+      "amount": "Amount (kr)",
+      "downPayment": {
+        "title": ""
+      },
+      "taxes": {
+        "title": "Taxes"
+      },
+      "monthlyExpenses": {
+        "title": "Monthly expenses",
+        "summary": "Your amortization rate is: <b>{ amortizationRate }%</b>.",
+        "becauseOfDebtRatio": "1% is added because your loan is higher than the debt ratio.",
+        "becauseOfLoanLessThan70": "1% is added because your loan to value rating is between { level1 }% and { level2 }%.",
+        "becauseOfLoanMoreThan70": "2% is added because your loan to value rating is higher than { level }%.",
+        "table": {
+          "forYear": "for a year",
+          "forMonth": "for a month",
+          "forMonthPerLender": "for a month per lender"
+        }
+      }
+    }
   }
 }

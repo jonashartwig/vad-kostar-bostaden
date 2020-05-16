@@ -21,6 +21,7 @@
 	});
 
 	let currentLanguage = initialLanguage;
+	$: currentCountry = language.languageToCountryMap[currentLanguage].countryShort
 
 	locale.subscribe(val => currentLanguage = val);
 
@@ -42,7 +43,7 @@
 			</div>
 			<div class="col-3 dropdown vkb-main-color">
 					<div class="nav-link dropdown-toggle" id="language-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" >
-						<span class="flag-icon flag-icon-{language.languageToCountryMap[currentLanguage].countryShort}"></span> { $_("language") }
+						<span class="flag-icon flag-icon-{currentCountry}"></span> { $_("language") }
 					</div>
 				<div class="dropdown-menu vkb-main-color" aria-labelledby="language-toggle">
 					{#each availableLanguages as availableLanguage}
@@ -76,7 +77,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col text-center">
-				Visit us on <a href="https://github.com/jonashartwig/vad-kostar-bostaden">github</a>
+				{ $_("footer.visitUs") } <a href="https://github.com/jonashartwig/vad-kostar-bostaden">github</a>
 			</div>
 		</div>
 	</div>
