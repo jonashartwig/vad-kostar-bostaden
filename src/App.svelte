@@ -59,12 +59,10 @@
 			<div class="row">
 				<div class="col">
 					<p>
-						This page tries to collect information for you who wants to buy a place to live in Sweden. It will help you understand the costs that await you.
-						Start by adding individuals who will apply for the loan. Adding name and cash is optional, the salary is required. Additional information can be found in each section.
+						{ $_("disclaimer1") }
 					</p>
 					<p>
-						We do not save any of the data you enter in the form below. We dont use any cookies or any other form of tracking either.
-						We believe in that you own your data.
+						{ $_("disclaimer2") }
 					</p>
 				</div>
 			</div>
