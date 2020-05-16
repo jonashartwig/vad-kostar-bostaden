@@ -1,7 +1,7 @@
 <script>
   import { _, number } from "svelte-i18n";
   import * as downPayment from "../mortgage/down_payment";
-	import lagfart from "../mortgage/lagfart"
+	import titleDeed from "../mortgage/title_deed"
 	import mortgageDeed from "../mortgage/mortgage_deed";
 	import amortization from "../mortgage/amortization";
 	import amortizationPercent, { loanToDebtRatioPercent, loanToValuePercent } from "../mortgage/amortization_percent";
@@ -84,7 +84,7 @@
                 <tr>
                   <td>Lagfart</td>
                   <td>1,5%</td>
-                  <td><b>{ $number(lagfart(state.price)) } kr</b></td>
+                  <td><b>{ $number(titleDeed(state.price)) } kr</b></td>
                 </tr>
                 <tr>
                   <td>Pantbrev</td>
