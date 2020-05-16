@@ -1,8 +1,8 @@
 import { expect } from 'chai';
-import pantbrev from '../src/mortgage/pantbrev';
+import mortgageDeed from '../src/mortgage/mortgage_deed';
 
 describe("pantbrev", () => {
   it("should calculte right for my house", () => {
-    expect(pantbrev(4577250, 1450400)).to.equal(62912);
+    expect(mortgageDeed(4577250, 1450400)).to.equal(62912);
   });
 });

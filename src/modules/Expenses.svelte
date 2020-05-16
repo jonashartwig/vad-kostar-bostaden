@@ -2,7 +2,7 @@
   import { _, number } from "svelte-i18n";
   import * as downPayment from "../mortgage/down_payment";
 	import lagfart from "../mortgage/lagfart"
-	import pantbrev from "../mortgage/pantbrev";
+	import mortgageDeed from "../mortgage/mortgage_deed";
 	import amortization from "../mortgage/amortization";
 	import amortizationPercent, { loanToDebtRatioPercent, loanToValuePercent } from "../mortgage/amortization_percent";
 	import amortizationMonth from "../mortgage/amortization_month";
@@ -89,7 +89,7 @@
                 <tr>
                   <td>Pantbrev</td>
                   <td>2%</td>
-                  <td><b>{ $number(pantbrev(state.getLoan(), state.pantbrev)) } kr</b></td>
+                  <td><b>{ $number(mortgageDeed(state.getLoan(), state.pantbrev)) } kr</b></td>
                 </tr>
               </tbody>
             </table>

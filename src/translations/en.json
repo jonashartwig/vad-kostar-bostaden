@@ -20,5 +20,16 @@
       "remove": "Remove"
     },
     "summary": "The combined <u>total salary</u> per year is: <b>{ combinedSalary } kr</b>. The resulting <u>debt ratio</u> is therefore <b>{ debtRatio } kr </b>."
+  },
+  "estate": {
+    "title": "Estate",
+    "introduction": "Let us now look at your estate. Please enter the price and the existing mortgage deed (pantbrev). When you buy a new house you need to pay tax on the amount you loan.",
+    "example": "Each house has a mortgage deed (pantbrev) from the previous owner. You have to pay this fee to your bank as a form of insurance. It is calculated based on the previous existing mortgage deed and the loan you take. The amount you have to pay is calculated by substracting the existing mortgage deed from the loan. You have to pay { mortgageDeedPercent }% of that amount. Imagine you want to buy a house worth { price } kr. You pay the minimum down payment of { downPayment } kr. That results in a loan of { loan } kr. The existing mortgage deeds cover { mortgageDeed } kr. Then you have to pay { mortgageDeedPercent }% of { loan } kr - { mortgageDeed } kr = { mortgageDeedPercent } % of { mortgageDeedRequired } kr = { mortgageDeedToPay } kr. A fee of { mortgageDeedFee } kr is taken by Lantmäteriet to buy new mortgage deeds. Each bank takes an additional fee on top of that. Handelsbanken takes { bankFee } kr, for example. This fee varies by bank. Therefore it is not included in the calculation.",
+    "mortgageDeed": "Mortgage deed (pantbrev)",
+    "price": "Price",
+    "resultingLoan": "The resulting loan will be: <b>{ loan } kr</b>.",
+    "basedOnMinimumDownPayment": "The loan is based on the minimum required <u>down payment</u> of: <b>{ downPayment } kr</b>.",
+    "basedOnExistingDownPayment": "The loan is based on the <u>combined down payment</u> from the assets of: <b>{ downPayment } kr</b>.",
+    "insufficientDownPayment": "The available down payment is not enouth. You need to invest <b>{ missingAmount } kr</b> more."
   }
 }
