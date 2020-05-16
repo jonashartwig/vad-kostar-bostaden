@@ -1,6 +1,24 @@
 {
   "title": "How much is the residence?",
   "language": "Language",
-  "disclaimer1": "This page tries to collect information for you who wants to buy a place to live in Sweden. It will help you understand the costs that await you. Start by adding individuals who will apply for the loan. Adding name and cash is optional, the salary is required. Additional information can be found in each section.",
-  "disclaimer2": "We do not save any of the data you enter in the form below. We dont use any cookies or any other form of tracking either. We believe in that you own your data."
+  "showMore": "Show more",
+  "showLess": "Show less",
+  "introduction": {
+    "welcome": "This page tries to collect information for you who wants to buy a place to live in Sweden. It will help you understand the costs that await you. Start by adding individuals who will apply for the loan. Adding name and cash is optional, the salary is required. Additional information can be found in each section.",
+    "dataPolicy": "We do not save any of the data you enter in the form below. We dont use any cookies or any other form of tracking either. We believe in that you own your data."
+  },
+  "lenders": {
+    "title": "Lenders",
+    "introduction": "Help us understand your financial situation. Please enter your salary in kr/month before tax. The salary is required for the debt ratio (skuldkvot). Debt ratio is one of the factors that determine your amortization rate.",
+    "example": "The debt ratio is calculated by multiplying the sum of the lenders yearly salary by 4,5. Imagine you have two lenders: Jonas and Emelie. Jonas earns { sallaryJonas } kr a month before tax and Emelie earns { sallaryEmelie } kr a month before tax. The debt ratio is therefore: (12 * { sallaryJonas } kr + 12 * { sallaryEmelie } kr) * { debtRatioMultiplyer } = ({ sallaryJonasYear } kr + { sallaryEmelieYear } kr) * { debtRatioMultiplyer } = { debtRatio } kr. If the loan exceeds { debtRatio } kr you need to amortize an additional 1%.",
+    "downPayment": "The down payment is calculated as { downPaymentPercent }% of the final price of your estate. This is the required minimum. You may use the fields for cash to identify each individuals assets. You may leave it empty. All other calculations below assume that you will pay the minimum amount. You can use those fields to understand how amortization changes in case you add more down payment.",
+    "table": {
+      "name": "Name",
+      "salaryPerMonth": "Salary (kr/month)",
+      "cash": "Cash (kr)",
+      "create": "Add",
+      "remove": "Remove"
+    },
+    "summary": "The combined <u>total salary</u> per year is: <b>{ combinedSalary } kr</b>. The resulting <u>debt ratio</u> is therefore <b>{ debtRatio } kr </b>."
+  }
 }

@@ -59,10 +59,10 @@
 			<div class="row">
 				<div class="col">
 					<p>
-						{ $_("disclaimer1") }
+						{ $_("introduction.welcome") }
 					</p>
 					<p>
-						{ $_("disclaimer2") }
+						{ $_("introduction.dataPolicy") }
 					</p>
 				</div>
 			</div>

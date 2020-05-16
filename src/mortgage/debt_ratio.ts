@@ -1,3 +1,5 @@
+export const debtRatioMultiplyer: number = 4.5;
+
 export default function(salary: number): number {
-  return 4.5 * salary;
+  return debtRatioMultiplyer * salary;
 }

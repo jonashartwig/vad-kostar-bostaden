@@ -1,6 +1,8 @@
 <script>
-  import { number } from "svelte-i18n";
+  import { _, number } from "svelte-i18n";
 	import Borrower from "./Borrower.svelte"
+  import { debtRatioMultiplyer } from "../mortgage/debt_ratio";
+  import { percentageWhenSigned, percentageWhenAvailable } from "../mortgage/down_payment";
 
 	export let state;
 </script>
@@ -9,27 +11,40 @@
 	<div class="container">
 		<div class="row vkb-secondary-color">
 			<div class="col">
-				<h2>Lenders</h2>
+				<h2>{ $_("lenders.title") }</h2>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col">
 				<p>
-					Help us understand your financial situation. Please enter your salary in kr/month before tax. The salary is required for the debt ratio (skuldkvot).
-					Debt ratio is one of the factors that determine your amortization rate.
-					<a class="badge collapse show multi-collapse-lenders collapse-no-transition" data-toggle="collapse" data-target=".multi-collapse-lenders" id="lenders-show-help" href="#lenders-help" role="button" aria-expanded="true" aria-controls="lenders-help-1 lenders-help-2 lenders-show-help">Show more...</a>
+					{ $_("lenders.introduction") }
+					<a class="badge collapse show multi-collapse-lenders collapse-no-transition" data-toggle="collapse" data-target=".multi-collapse-lenders" id="lenders-show-help" href="#lenders-help" role="button" aria-expanded="true" aria-controls="lenders-help-1 lenders-help-2 lenders-show-help">{ $_("showMore") }...</a>
 				</p>
 				<p class="collapse multi-collapse-lenders" id="lenders-help-1">
-					The debt ratio is calculated by multiplying the sum of the lenders yearly salary by 4,5.
-					Imagine you have two lenders: Jonas and Emelie. Jonas earns { $number(35000) } kr a month before tax and Emelie earns { $number(41500) } kr a month before tax.
-					The debt ratio is therefore: (12 * { $number(35000) } kr + 12 * { $number(41500) } kr) * { $number(4.5) } = ({ $number(420000) } kr + { $number(498000) } kr) * { $number(4.5) } = { $number(4131000) } kr.
-					If the loan exceeds { $number(4131000) } kr you need to amortize an additional 1%.
+          {
+            $_({
+              id: "lenders.example",
+              values: {
+                sallaryJonas: $number(35000),
+                sallaryEmelie: $number(41500),
+                debtRatioMultiplyer: $number(debtRatioMultiplyer),
+                sallaryJonasYear: $number(12 * 35000),
+                sallaryEmelieYear: $number(12 * 41500),
+                debtRatio: $number(4131000)
+              }
+            })
+          }
 				</p>
 				<p class="collapse multi-collapse-lenders" id="lenders-help-2">
-					The down payment is calculeted as 15% of the final price of your estate. This is the required minimum. You may use the fields for cash to identify each individuals assets.
-					You may leave it empty. All other calculations below assume that you will pay the minimum amount.
-					You can use those fields to understand how amortization changes in case you add more down payment.
-					<a data-toggle="collapse" data-target=".multi-collapse-lenders" href="#lenders-help" class="badge" role="button" aria-expanded="true" aria-controls="lenders-help-1 lenders-help-2 lenders-show-help">Show less...</a>
+					{
+            $_({
+              id: "lenders.downPayment",
+              values: {
+                downPaymentPercent: $number((percentageWhenAvailable + percentageWhenSigned) * 100)
+              }
+            })
+          }
+					<a data-toggle="collapse" data-target=".multi-collapse-lenders" href="#lenders-help" class="badge" role="button" aria-expanded="true" aria-controls="lenders-help-1 lenders-help-2 lenders-show-help">{ $_("showLess") }...</a>
 				</p>
 			</div>
 		</div>
@@ -38,10 +53,10 @@
 				<table class="table">
 				  <thead>
 				    <tr>
-				      <th scope="col">Name</th>
-				      <th scope="col">Salary (kr/month)</th>
-				      <th scope="col">Cash (kr)</th>
-				      <th scope="col">Action</th>
+				      <th scope="col">{ $_("lenders.table.name") }</th>
+				      <th scope="col">{ $_("lenders.table.salaryPerMonth") }</th>
+				      <th scope="col">{ $_("lenders.table.cash") }</th>
+				      <th scope="col"></th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -54,7 +69,7 @@
 							<td></td>
 						  <td>
 						    <button type="button" class="float-right btn btn-secondary" on:click={ () => state = state.addBorrower() }>
-						      Create
+						      { $_("lenders.table.create") }
 						    </button>
 						  </td>
 						</tr>
@@ -65,8 +80,15 @@
 		<div class="row">
 			<div class="col">
 				<p>
-					The combined <u>total salary</u> per year is: <b>{ $number(state.getCombinedSalary()) } kr</b>.
-					The resulting <u>debt ratio</u> is therefore <b>{ $number(state.getDebtRatio()) } kr </b>.
+          { @html
+            $_({
+              id: "lenders.summary",
+              values: {
+                combinedSalary: $number(state.getCombinedSalary()),
+                debtRatio: $number(state.getDebtRatio())
+              }
+            })
+          }
 				</p>
 			</div>
 		</div>
