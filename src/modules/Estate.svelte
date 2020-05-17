@@ -2,6 +2,7 @@
   import { _, number } from "svelte-i18n";
   import { total as requiredDownPayment } from "../mortgage/down_payment";
   import { percentage as mortgageDeedPercent, fee as mortgageDeedFee } from "../mortgage/mortgage_deed";
+	import amortizationPercent, { loanToDebtRatioPercent, loanToValuePercent, isLoanMoreThenHalfButLessThenLoanLevel, loanLevelValueStep1, loanLevelValueStep2, isLoanHalfOrLessOfPrice } from "../mortgage/amortization_percent";
 
   export let state;
 </script>
@@ -65,7 +66,6 @@
               }
             })
           }
-        </p>
         {#if state.getCombinedDownPayment() }
           { @html
             $_({
@@ -86,17 +86,49 @@
             }
           {/if}
         {:else}
-          <p>
-            { @html
+          { @html
+            $_({
+              id: "estate.basedOnMinimumDownPayment",
+              values: {
+                downPayment: $number(requiredDownPayment(state.price))
+              }
+            })
+          }
+        {/if}
+        </p>
+        <p>
+          { @html
+            $_({
+              id: "estate.amortization.summary",
+              values: {
+                amortizationRate: $number(state.getAmortizationRate() * 100)}
+            })
+          }
+          {#if loanToDebtRatioPercent(state.getLoan(), state.getDebtRatio()) > 0 }
+            { $_("estate.amortization.becauseOfDebtRatio") }
+          {/if}
+          {#if isLoanMoreThenHalfButLessThenLoanLevel(state.price, state.getLoan()) }
+            {
               $_({
-                id: "estate.basedOnMinimumDownPayment",
+                id: "estate.amortization.becauseOfLoanLessThan70",
                 values: {
-                  downPayment: $number(requiredDownPayment(state.price))
+                  level1: $number(loanLevelValueStep1 * 100),
+                  level2: $number(loanLevelValueStep2 * 100)
                 }
               })
             }
-          </p>
-        {/if}
+          {/if}
+          {#if !isLoanHalfOrLessOfPrice(state.price, state.getLoan()) && !isLoanMoreThenHalfButLessThenLoanLevel(state.price, state.getLoan()) }
+            {
+              $_({
+                id: "estate.amortization.becauseOfLoanMoreThan70",
+                values: {
+                  level: $number(loanLevelValueStep1 * 100)
+                }
+              })
+            }
+          {/if}
+        </p>
       </div>
     </div>
   </div>

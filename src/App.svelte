@@ -5,6 +5,7 @@
 	import Borrowers from "./modules/Borrowers";
 	import Estate from "./modules/Estate";
 	import Expenses from "./modules/Expenses";
+	import Interest from "./modules/Interest";
 	import * as language from "./modules/language";
 	import en from "./translations/en.json"
 	import de from "./translations/de.json"
@@ -71,6 +72,7 @@
 	</section>
 	<Borrowers bind:state={state} />
 	<Estate bind:state={state} />
+	<Interest bind:state={state} />
 	<Expenses bind:state={state} />
 </main>
 <footer class="page-footer font-small vkb-main-color">

@@ -33,10 +33,21 @@
     "resultingLoan": "The resulting loan will be: <b>{ loan } kr</b>.",
     "basedOnMinimumDownPayment": "The loan is based on the minimum required <u>down payment</u> of: <b>{ downPayment } kr</b>.",
     "basedOnExistingDownPayment": "The loan is based on the <u>combined down payment</u> from the assets of: <b>{ downPayment } kr</b>.",
-    "insufficientDownPayment": "The available down payment is not enouth. You need to invest <b>{ missingAmount } kr</b> more."
+    "insufficientDownPayment": "The available down payment is not enouth. You need to invest <b>{ missingAmount } kr</b> more.",
+    "amortization": {
+      "summary": "Your amortization rate is: <b>{ amortizationRate }%</b>.",
+      "becauseOfDebtRatio": "1% is added because your loan is higher than the debt ratio.",
+      "becauseOfLoanLessThan70": "1% is added because your loan to value rating is between { level1 }% and { level2 }%.",
+      "becauseOfLoanMoreThan70": "2% is added because your loan to value rating is higher than { level }%."
+    }
   },
   "footer": {
     "visitUs": "Visit us on"
+  },
+  "interest": {
+    "title": "Interest",
+    "introduction": "In this section you can see how the interest rate will influence the monthly costs. The rate is negotiated in dialog with you and your bank.",
+    "summary": "The current interest rate is { interestPercent }%. You will need to pay { amountPerYear } in interest for your loan of { loan } kr."
   },
   "expenses": {
     "title": "Expenses",
@@ -55,11 +66,11 @@
       },
       "monthlyExpenses": {
         "title": "Monthly expenses",
-        "summary": "Your amortization rate is: <b>{ amortizationRate }%</b>.",
-        "becauseOfDebtRatio": "1% is added because your loan is higher than the debt ratio.",
-        "becauseOfLoanLessThan70": "1% is added because your loan to value rating is between { level1 }% and { level2 }%.",
-        "becauseOfLoanMoreThan70": "2% is added because your loan to value rating is higher than { level }%.",
+        "introduction": "Let us summarize the yearly and monthly expences that await you. There are two main factors: amortization and interest.",
         "table": {
+          "interest": "Interest { interestPercent }% (kr)",
+          "amortization": "Amortization { amortizationPercent }% (kr)",
+          "sum": "Sum (kr)",
           "forYear": "for a year",
           "forMonth": "for a month",
           "forMonthPerLender": "for a month per lender"

@@ -1,16 +1,19 @@
 import Borrower from "./borrower";
 import debtRatio from "../mortgage/debt_ratio";
 import * as downPayment from "../mortgage/down_payment";
+import amortizationPercent from "../mortgage/amortization_percent";
 
 export default class State {
   borrowers: Borrower[]
   price: number
   pantbrev: number
+  interest: number
 
   constructor() {
     this.borrowers = [new Borrower("Jonas", 59000, 0), new Borrower("Emelie", 46700, 0)];
     this.price = 5385000;
     this.pantbrev = 1450400
+    this.interest = 0.015
   }
 
   addBorrower(borrower: Borrower): State {
@@ -43,5 +46,9 @@ export default class State {
 
   getLoan(): number {
     return this.price - this.getCombinedDownPaymentOrMinimum(this.price)
+  }
+
+  getAmortizationRate(): number {
+    return amortizationPercent(this.price, this.getLoan(), this.getCombinedSalary())
   }
 }

@@ -2,8 +2,12 @@
   max-width: 700px;
 }
 
-input[type=number], input[type=text] {
+input[type=number], input[type=text], input[type=range] {
   height: calc(2em + .75rem + 2px);
+}
+
+input[type=range] {
+  width: 100%;
 }
 
 p {
