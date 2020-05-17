@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 import { JsonProperty, Serializable } from "typescript-json-serializer";
 
 @Serializable()
-export default class Lender {
+export default class Borrower {
   @JsonProperty() salary: number;
   @JsonProperty() name: string;
   @JsonProperty() downPayment: number;

@@ -1,44 +1,44 @@
 import { JsonProperty, Serializable, deserialize as deserializeAsJson, serialize as serializeAsJson } from "typescript-json-serializer";
 
-import Lender from "./lender";
+import Borrower from "./borrower";
 import debtRatio from "../mortgage/debt_ratio";
 import * as downPayment from "../mortgage/down_payment";
 import amortizationPercent from "../mortgage/amortization_percent";
-import amortizationPerYear, { amortizationPerMonth, amortizationPerMonthPerLender } from "../mortgage/amortization";
-import interestPerYear, { interestPerMonth, interestPerMonthPerLender } from "../mortgage/interest";
+import amortizationPerYear, { amortizationPerMonth, amortizationPerMonthPerBorrower } from "../mortgage/amortization";
+import interestPerYear, { interestPerMonth, interestPerMonthPerBorrower } from "../mortgage/interest";
 
 @Serializable()
 export default class State {
-  @JsonProperty({ type: Lender }) lenders: Array<Lender>;
+  @JsonProperty({ type: Borrower }) borrowers: Array<Borrower>;
   @JsonProperty() price: number;
   @JsonProperty() pantbrev: number;
   @JsonProperty() interest: number;
 
   constructor() {
-    this.lenders = [new Lender("Jonas", 59000, 0), new Lender("Emelie", 46700, 0)];
+    this.borrowers = [new Borrower("Jonas", 59000, 0), new Borrower("Emelie", 46700, 0)];
     this.price = 5385000;
     this.pantbrev = 1450400;
     this.interest = 0.0133;
   }
 
-  addLender(borrower: Lender): State {
-    this.lenders = [...this.lenders, borrower || new Lender("", 0, 0)];
+  addBorrower(borrower: Borrower): State {
+    this.borrowers = [...this.borrowers, borrower || new Borrower("", 0, 0)];
 
     return this;
   }
 
-  removeLender(id: string): State {
-    this.lenders = this.lenders.filter(borrower => borrower.getId() != id)
+  removeBorrower(id: string): State {
+    this.borrowers = this.borrowers.filter(borrower => borrower.getId() != id)
 
     return this;
   }
 
   getCombinedSalary(): number {
-    return 12 * this.lenders.reduce((accumulator, value) => accumulator + (value.salary || 0), 0);
+    return 12 * this.borrowers.reduce((accumulator, value) => accumulator + (value.salary || 0), 0);
   }
 
   getCombinedDownPayment(): number {
-    return this.lenders.reduce((accumulator, value) => accumulator + (value.downPayment || 0), 0);
+    return this.borrowers.reduce((accumulator, value) => accumulator + (value.downPayment || 0), 0);
   }
 
   getCombinedDownPaymentOrMinimum(price: number): number {
@@ -65,8 +65,8 @@ export default class State {
     return amortizationPerMonth(this.price, this.getLoan(), this.getCombinedSalary())
   }
 
-  getAmortizationPerMonthPerLender(): number {
-    return amortizationPerMonthPerLender(this.price, this.getLoan(), this.getCombinedSalary(), this.lenders.length)
+  getAmortizationPerMonthPerBorrower(): number {
+    return amortizationPerMonthPerBorrower(this.price, this.getLoan(), this.getCombinedSalary(), this.borrowers.length)
   }
 
   getInterestPerYear(): number {
@@ -77,8 +77,8 @@ export default class State {
     return interestPerMonth(this.interest, this.getLoan())
   }
 
-  getInterestPerMonthPerLender(): number {
-    return interestPerMonthPerLender(this.interest, this.getLoan(), this.lenders.length)
+  getInterestPerMonthPerBorrower(): number {
+    return interestPerMonthPerBorrower(this.interest, this.getLoan(), this.borrowers.length)
   }
 
   serialize(): object {

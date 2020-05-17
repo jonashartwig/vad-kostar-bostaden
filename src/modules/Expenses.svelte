@@ -159,10 +159,10 @@
                   <td>{ $number(state.getAmortizationPerMonth() + state.getInterestPerMonth()) }</td>
                 </tr>
                 <tr>
-                  <td>{ $_("expenses.card.monthlyExpenses.table.forMonthPerLender") }</td>
-                  <td>{ $number(state.getAmortizationPerMonthPerLender()) }</td>
-                  <td>{ $number(state.getInterestPerMonthPerLender()) }</td>
-                  <td><b>{ $number(state.getAmortizationPerMonthPerLender() + state.getInterestPerMonthPerLender()) }</b></td>
+                  <td>{ $_("expenses.card.monthlyExpenses.table.forMonthPerBorrower") }</td>
+                  <td>{ $number(state.getAmortizationPerMonthPerBorrower()) }</td>
+                  <td>{ $number(state.getInterestPerMonthPerBorrower()) }</td>
+                  <td><b>{ $number(state.getAmortizationPerMonthPerBorrower() + state.getInterestPerMonthPerBorrower()) }</b></td>
                 </tr>
               </tbody>
             </table>

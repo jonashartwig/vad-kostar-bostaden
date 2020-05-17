@@ -1,8 +1,8 @@
-export function interestPerMonthPerLender (interestPercent: number, loan: number, lenderCount: number): number {
-  if(lenderCount <= 0) {
+export function interestPerMonthPerBorrower (interestPercent: number, loan: number, borrowerCount: number): number {
+  if(borrowerCount <= 0) {
     return NaN;
   }
-  return interestPerMonth(interestPercent, loan) / lenderCount;
+  return interestPerMonth(interestPercent, loan) / borrowerCount;
 }
 
 export function interestPerMonth (interestPercent: number, loan: number): number {
