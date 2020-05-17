@@ -11,6 +11,8 @@
     "noImplicitReturns": true,
     "allowSyntheticDefaultImports": true,
     "lib": [ "dom", "es2015" ],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "typeRoots": [
       "./node_modules/@types"
     ]

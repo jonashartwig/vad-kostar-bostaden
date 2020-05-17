@@ -2,7 +2,7 @@
 	import { _, register, init, getLocaleFromNavigator, locale, addMessages, locales } from 'svelte-i18n';
 	import "./styles.css";
 	import State from "./dto/state";
-	import Borrowers from "./modules/Borrowers";
+	import Lenders from "./modules/Lenders";
 	import Estate from "./modules/Estate";
 	import Expenses from "./modules/Expenses";
 	import Interest from "./modules/Interest";
@@ -70,7 +70,7 @@
 			</div>
 		</div>
 	</section>
-	<Borrowers bind:state={state} />
+	<Lenders bind:state={state} />
 	<Estate bind:state={state} />
 	<Interest bind:state={state} />
 	<Expenses bind:state={state} />

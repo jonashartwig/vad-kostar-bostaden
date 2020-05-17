@@ -1,6 +1,6 @@
 <script>
   import { _, number } from "svelte-i18n";
-	import Borrower from "./Borrower.svelte"
+	import Lender from "./Lender.svelte"
   import { debtRatioMultiplyer } from "../mortgage/debt_ratio";
   import { totalPercentage } from "../mortgage/down_payment";
 
@@ -60,15 +60,15 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-						{#each state.borrowers as borrower}
-							<Borrower bind:borrower={borrower} on:remove={ event => state = state.removeBorrower(event.detail) } />
+						{#each state.lenders as borrower}
+							<Lender bind:borrower={borrower} on:remove={ event => state = state.removeLender(event.detail) } />
 						{/each}
 						<tr>
 							<td></td>
 							<td></td>
 							<td></td>
 						  <td>
-						    <button type="button" class="float-right btn btn-secondary" on:click={ () => state = state.addBorrower() }>
+						    <button type="button" class="float-right btn btn-secondary" on:click={ () => state = state.addLender() }>
 						      { $_("lenders.table.create") }
 						    </button>
 						  </td>
