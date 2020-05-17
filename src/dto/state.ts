@@ -14,11 +14,11 @@ export default class State {
   @JsonProperty() pantbrev: number;
   @JsonProperty() interest: number;
 
-  constructor() {
-    this.borrowers = [new Borrower("Jonas", 59000, 0), new Borrower("Emelie", 46700, 0)];
-    this.price = 5385000;
-    this.pantbrev = 1450400;
-    this.interest = 0.0133;
+  constructor(borrowers: Array<Borrower> = [], price: number = 0, pantbrev: number = 0, interest: number = 0) {
+    this.borrowers = borrowers;
+    this.price = price;
+    this.pantbrev = pantbrev;
+    this.interest = interest;
   }
 
   addBorrower(borrower: Borrower): State {

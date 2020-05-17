@@ -1,12 +1,14 @@
 <script>
-	import { _, register, init, getLocaleFromNavigator, locale, addMessages, locales } from 'svelte-i18n';
+	import { _, register, init, getLocaleFromNavigator, locale, addMessages, locales } from "svelte-i18n";
 	import "./styles.css";
 	import State from "./dto/state";
 	import Borrowers from "./components/Borrowers";
 	import Estate from "./components/Estate";
 	import Expenses from "./components/Expenses";
 	import Interest from "./components/Interest";
+	import SaveForLater from "./components/SaveForLater";
 	import * as language from "./modules/language";
+	import { loadFromLocalStorage } from "./modules/save";
 	import en from "./translations/en.json"
 	import de from "./translations/de.json"
 	import sv from "./translations/sv.json"
@@ -31,7 +33,7 @@
 	addMessages("de", de);
 	addMessages("fi", fi);
 
-	export let state = new State();
+	export let state = loadFromLocalStorage() || new State();
 </script>
 
 <header class="vkb-main-color">
@@ -43,12 +45,12 @@
 				</h1>
 			</div>
 			<div class="col-3 dropdown vkb-main-color">
-					<div class="nav-link dropdown-toggle" id="language-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" >
+					<div class="nav-link dropdown-toggle pointer" id="language-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" >
 						<span class="flag-icon flag-icon-{currentCountry}"></span> { $_("language") }
 					</div>
 				<div class="dropdown-menu vkb-main-color" aria-labelledby="language-toggle">
 					{#each availableLanguages as availableLanguage}
-						<div class="dropdown-item vkb-main-color" on:click={ () => locale.set(availableLanguage) }><span class="flag-icon flag-icon-{language.languageToCountryMap[availableLanguage].countryShort}"> </span>  { language.languageToCountryMap[availableLanguage].displayName }</div>
+						<div class="dropdown-item vkb-main-color pointer" on:click={ () => locale.set(availableLanguage) }><span class="flag-icon flag-icon-{language.languageToCountryMap[availableLanguage].countryShort}"> </span>  { language.languageToCountryMap[availableLanguage].displayName }</div>
 					{/each}
 				</div>
 			</div>
@@ -74,6 +76,7 @@
 	<Estate bind:state={state} />
 	<Interest bind:state={state} />
 	<Expenses bind:state={state} />
+	<SaveForLater bind:state={state} />
 </main>
 <footer class="page-footer font-small vkb-main-color">
 	<div class="container">

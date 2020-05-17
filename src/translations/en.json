@@ -77,5 +77,15 @@
         }
       }
     }
+  },
+  "saveForLater": {
+    "title": "Save for later",
+    "introduction": "We recommend that you save your data if you like to continue some other time. None of this data goes to us. It is up to you where you save the data and who you share it with.",
+    "asFileDescription": "We provide three alternatives: You can save the data as a file. You can upload this file at a later point to this page, or share it with others.",
+    "asFile": "Save as a file.",
+    "asLinkDescription": "You can generate a link that you can save or share with others. The data will be part of the link. If you navigate to it, the data will be filled back into the page.",
+    "asLink": "Generate a link.",
+    "asLocalStorageDescription": "You can choose to have your browser take care of the data. Choosing this will not let you share the data. It will be inserted automatically when you come back.",
+    "asLocalStorage": "Let the browser manage it."
   }
 }
