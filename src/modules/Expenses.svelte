@@ -3,10 +3,6 @@
   import * as downPayment from "../mortgage/down_payment";
 	import titleDeed, { fee as titleDeedFee, percentage as titleDeedPercent } from "../mortgage/title_deed"
 	import mortgageDeed, { percentage as mortgageDeedPercent } from "../mortgage/mortgage_deed";
-	import amortization from "../mortgage/amortization";
-	import amortizationMonth from "../mortgage/amortization_month";
-	import amortizationMonthBorrower from "../mortgage/amortization_month_borrower";
-	import interestPerYear, { interestPerMonth, interestPerMonthPerLender } from "../mortgage/interest";
   import loanToValue from "../mortgage/loan_to_value";
 
   export let state;
@@ -32,7 +28,7 @@
               values: {
                 whenSigned: $number(downPayment.percentageWhenSigned * 100),
                 whenAvailable: $number(downPayment.percentageWhenAvailable * 100),
-                total: $number((downPayment.percentageWhenAvailable + downPayment.percentageWhenSigned) * 100)
+                total: $number(downPayment.totalPercentage * 100)
               }
             })
           }
@@ -75,7 +71,7 @@
                   <td><b>{ $number(downPayment.whenAvailable(state.price)) }</b></td>
                 </tr>
                 <tr>
-                  <td>{ $number((downPayment.percentageWhenAvailable + downPayment.percentageWhenSigned) * 100) }%</td>
+                  <td>{ $number(downPayment.totalPercentage * 100) }%</td>
                   <td><b>{ $number(downPayment.total(state.price)) }</b></td>
                 </tr>
               </tbody>
@@ -152,21 +148,21 @@
               <tbody>
                 <tr>
                   <td>{ $_("expenses.card.monthlyExpenses.table.forYear") }</td>
-                  <td>{ $number(amortization(state.price, state.getLoan(), state.getCombinedSalary())) }</td>
-                  <td>{ $number(interestPerYear(state.interest, state.getLoan())) }</td>
-                  <td>{ $number(amortization(state.price, state.getLoan(), state.getCombinedSalary()) + interestPerYear(state.interest, state.getLoan())) }</td>
+                  <td>{ $number(state.getAmortizationPerYear()) }</td>
+                  <td>{ $number(state.getInterestPerYear()) }</td>
+                  <td>{ $number(state.getAmortizationPerYear() + state.getInterestPerYear()) }</td>
                 </tr>
                 <tr>
                   <td>{ $_("expenses.card.monthlyExpenses.table.forMonth") }</td>
-                  <td>{ $number(amortizationMonth(state.price, state.getLoan(), state.getCombinedSalary())) }</td>
-                  <td>{ $number(interestPerMonth(state.interest, state.getLoan())) }</td>
-                  <td>{ $number(amortizationMonth(state.price, state.getLoan(), state.getCombinedSalary()) + interestPerMonth(state.interest, state.getLoan())) }</td>
+                  <td>{ $number(state.getAmortizationPerMonth()) }</td>
+                  <td>{ $number(state.getInterestPerMonth()) }</td>
+                  <td>{ $number(state.getAmortizationPerMonth() + state.getInterestPerMonth()) }</td>
                 </tr>
                 <tr>
                   <td>{ $_("expenses.card.monthlyExpenses.table.forMonthPerLender") }</td>
-                  <td>{ $number(amortizationMonthBorrower(state.price, state.getLoan(), state.getCombinedSalary(), state.borrowers.length)) }</td>
-                  <td>{ $number(interestPerMonthPerLender(state.interest, state.getLoan(), state.borrowers.length)) }</td>
-                  <td><b>{ $number(amortizationMonthBorrower(state.price, state.getLoan(), state.getCombinedSalary(), state.borrowers.length) + interestPerMonthPerLender(state.interest, state.getLoan(), state.borrowers.length)) }</b></td>
+                  <td>{ $number(state.getAmortizationPerMonthPerLender()) }</td>
+                  <td>{ $number(state.getInterestPerMonthPerLender()) }</td>
+                  <td><b>{ $number(state.getAmortizationPerMonthPerLender() + state.getInterestPerMonthPerLender()) }</b></td>
                 </tr>
               </tbody>
             </table>

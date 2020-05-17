@@ -2,6 +2,8 @@ import Borrower from "./borrower";
 import debtRatio from "../mortgage/debt_ratio";
 import * as downPayment from "../mortgage/down_payment";
 import amortizationPercent from "../mortgage/amortization_percent";
+import amortizationPerYear, { amortizationPerMonth, amortizationPerMonthPerLender } from "../mortgage/amortization";
+import interestPerYear, { interestPerMonth, interestPerMonthPerLender } from "../mortgage/interest";
 
 export default class State {
   borrowers: Borrower[]
@@ -50,5 +52,29 @@ export default class State {
 
   getAmortizationRate(): number {
     return amortizationPercent(this.price, this.getLoan(), this.getCombinedSalary())
+  }
+
+  getAmortizationPerYear(): number {
+    return amortizationPerYear(this.price, this.getLoan(), this.getCombinedSalary())
+  }
+
+  getAmortizationPerMonth(): number {
+    return amortizationPerMonth(this.price, this.getLoan(), this.getCombinedSalary())
+  }
+
+  getAmortizationPerMonthPerLender(): number {
+    return amortizationPerMonthPerLender(this.price, this.getLoan(), this.getCombinedSalary(), this.borrowers.length)
+  }
+
+  getInterestPerYear(): number {
+    return interestPerYear(this.interest, this.getLoan())
+  }
+
+  getInterestPerMonth(): number {
+    return interestPerMonth(this.interest, this.getLoan())
+  }
+
+  getInterestPerMonthPerLender(): number {
+    return interestPerMonthPerLender(this.interest, this.getLoan(), this.borrowers.length)
   }
 }

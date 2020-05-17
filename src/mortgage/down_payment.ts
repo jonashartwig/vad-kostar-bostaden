@@ -1,5 +1,6 @@
-export const percentageWhenSigned = 0.1;
-export const percentageWhenAvailable = 0.05;
+export const percentageWhenSigned = 0.1,
+  percentageWhenAvailable = 0.05,
+  totalPercentage = percentageWhenSigned + percentageWhenAvailable;
 
 export function whenSigned(price: number): number {
   return percentageWhenSigned * price;

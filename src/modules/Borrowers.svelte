@@ -2,7 +2,7 @@
   import { _, number } from "svelte-i18n";
 	import Borrower from "./Borrower.svelte"
   import { debtRatioMultiplyer } from "../mortgage/debt_ratio";
-  import { percentageWhenSigned, percentageWhenAvailable } from "../mortgage/down_payment";
+  import { totalPercentage } from "../mortgage/down_payment";
 
 	export let state;
 </script>
@@ -40,7 +40,7 @@
             $_({
               id: "lenders.downPayment",
               values: {
-                downPaymentPercent: $number((percentageWhenAvailable + percentageWhenSigned) * 100)
+                downPaymentPercent: $number(totalPercentage * 100)
               }
             })
           }
