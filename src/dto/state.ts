@@ -13,7 +13,7 @@ export default class State {
     this.borrowers = [new Borrower("Jonas", 59000, 0), new Borrower("Emelie", 46700, 0)];
     this.price = 5385000;
     this.pantbrev = 1450400
-    this.interest = 0.015
+    this.interest = 0.0133
   }
 
   addBorrower(borrower: Borrower): State {

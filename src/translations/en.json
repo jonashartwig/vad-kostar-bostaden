@@ -51,7 +51,7 @@
   },
   "expenses": {
     "title": "Expenses",
-    "introduction": "Now the expensive part. Let us sum up the coming expenses. We group them in four parts: down payment, fees, monthly costs for amortization and intrest.",
+    "introduction": "Now the expensive part. Let us sum up the coming expenses. We group them in two parts: one off costs that come with the purchase (down payment, taxes) and monthly costs for amortization and intrest.",
     "downPayment": "Down payment is made in 2 steps. The first step is payed immidiately after you sign the contract finalizing the affair. This fee is set to { whenSigned }%. The second fee is payed when the estate is handed over to you and it is ready to move in. It is set to { whenAvailable }%. In total that is { total }%.",
     "taxes": "There are two taxes that have to be payed: mortgage deed (pantbrev) and title deed (lagfart). The title deed is payed within three months after you bought the estate. It usually is paid right together with the second down payment. It is payed to Lantmäteriet and registers you as the new owner. An additional fee is required of { titleDeedFee } kr to create new title deed. It is calculates as { titleDeedPercent }% of the total value of the purchase. If you buy a hous worth { price } kr then title deed is { titleDeed } kr. See section estate for information about mortgage deed.",
     "card": {
