@@ -1,8 +1,8 @@
 <script>
   import { _, number } from "svelte-i18n";
-  import { total as requiredDownPayment } from "../mortgage/down_payment";
-  import { percentage as mortgageDeedPercent, fee as mortgageDeedFee } from "../mortgage/mortgage_deed";
-	import amortizationPercent, { loanToDebtRatioPercent, loanToValuePercent, isLoanMoreThenHalfButLessThenLoanLevel, loanLevelValueStep1, loanLevelValueStep2, isLoanHalfOrLessOfPrice } from "../mortgage/amortization_percent";
+  import { total as requiredDownPayment } from "../modules/down_payment";
+  import { percentage as mortgageDeedPercent, fee as mortgageDeedFee } from "../modules/mortgage_deed";
+	import amortizationPercent, { loanToDebtRatioPercent, loanToValuePercent, isLoanMoreThenHalfButLessThenLoanLevel, loanLevelValueStep1, loanLevelValueStep2, isLoanHalfOrLessOfPrice } from "../modules/amortization_percent";
 
   export let state;
 </script>

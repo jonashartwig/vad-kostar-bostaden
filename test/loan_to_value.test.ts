@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import loanToValue from '../src/mortgage/loan_to_value';
+import loanToValue from '../src/modules/loan_to_value';
 
 describe("loanToValue", () => {
   it("should calculate ratio", () => {

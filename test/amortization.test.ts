@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import amortizationPerYear, { amortizationPerMonth, amortizationPerMonthPerBorrower } from '../src/mortgage/amortization';
+import amortizationPerYear, { amortizationPerMonth, amortizationPerMonthPerBorrower } from '../src/modules/amortization';
 
 describe("amortization", () => {
   it("amortizationPerYear should calculte right for my house", () => {

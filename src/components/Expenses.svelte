@@ -1,9 +1,9 @@
 <script>
   import { _, number } from "svelte-i18n";
-  import * as downPayment from "../mortgage/down_payment";
-	import titleDeed, { fee as titleDeedFee, percentage as titleDeedPercent } from "../mortgage/title_deed"
-	import mortgageDeed, { percentage as mortgageDeedPercent } from "../mortgage/mortgage_deed";
-  import loanToValue from "../mortgage/loan_to_value";
+  import * as downPayment from "../modules/down_payment";
+	import titleDeed, { fee as titleDeedFee, percentage as titleDeedPercent } from "../modules/title_deed"
+	import mortgageDeed, { percentage as mortgageDeedPercent } from "../modules/mortgage_deed";
+  import loanToValue from "../modules/loan_to_value";
 
   export let state;
 </script>

@@ -1,8 +1,8 @@
 <script>
   import { _, number } from "svelte-i18n";
 	import Borrower from "./Borrower.svelte"
-  import { debtRatioMultiplyer } from "../mortgage/debt_ratio";
-  import { totalPercentage } from "../mortgage/down_payment";
+  import { debtRatioMultiplyer } from "../modules/debt_ratio";
+  import { totalPercentage } from "../modules/down_payment";
 
 	export let state;
 </script>

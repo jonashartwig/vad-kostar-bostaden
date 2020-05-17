@@ -2,10 +2,10 @@
 	import { _, register, init, getLocaleFromNavigator, locale, addMessages, locales } from 'svelte-i18n';
 	import "./styles.css";
 	import State from "./dto/state";
-	import Borrowers from "./modules/Borrowers";
-	import Estate from "./modules/Estate";
-	import Expenses from "./modules/Expenses";
-	import Interest from "./modules/Interest";
+	import Borrowers from "./components/Borrowers";
+	import Estate from "./components/Estate";
+	import Expenses from "./components/Expenses";
+	import Interest from "./components/Interest";
 	import * as language from "./modules/language";
 	import en from "./translations/en.json"
 	import de from "./translations/de.json"

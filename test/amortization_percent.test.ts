@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import amortizationPercent from '../src/mortgage/amortization_percent';
+import amortizationPercent from '../src/modules/amortization_percent';
 
 describe("amortization_percent", () => {
   it("should calculte right with 50% payed", () => {

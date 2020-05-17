@@ -1,11 +1,11 @@
 import { JsonProperty, Serializable, deserialize as deserializeAsJson, serialize as serializeAsJson } from "typescript-json-serializer";
 
 import Borrower from "./borrower";
-import debtRatio from "../mortgage/debt_ratio";
-import * as downPayment from "../mortgage/down_payment";
-import amortizationPercent from "../mortgage/amortization_percent";
-import amortizationPerYear, { amortizationPerMonth, amortizationPerMonthPerBorrower } from "../mortgage/amortization";
-import interestPerYear, { interestPerMonth, interestPerMonthPerBorrower } from "../mortgage/interest";
+import debtRatio from "../modules/debt_ratio";
+import * as downPayment from "../modules/down_payment";
+import amortizationPercent from "../modules/amortization_percent";
+import amortizationPerYear, { amortizationPerMonth, amortizationPerMonthPerBorrower } from "../modules/amortization";
+import interestPerYear, { interestPerMonth, interestPerMonthPerBorrower } from "../modules/interest";
 
 @Serializable()
 export default class State {
