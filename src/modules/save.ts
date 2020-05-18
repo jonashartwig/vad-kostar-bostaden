@@ -9,5 +9,11 @@ export function saveToLocalStorage(state: State): void {
 }
 
 export function loadFromLocalStorage(): State {
-  return State.deserializeFromString(localStorage.getItem(localStorageKey));
+  const state = localStorage.getItem(localStorageKey);
+
+  if(!state) {
+    return new State();
+  }
+
+  return State.deserializeFromString(state);
 }

@@ -33,7 +33,7 @@
 	addMessages("de", de);
 	addMessages("fi", fi);
 
-	export let state = loadFromLocalStorage() || new State();
+	export let state = loadFromLocalStorage();
 </script>
 
 <header class="vkb-main-color">
