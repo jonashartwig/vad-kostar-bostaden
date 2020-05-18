@@ -1,8 +1,23 @@
 <script>
-  import { _ } from "svelte-i18n";
+  import { _, getMessageFormatter } from "svelte-i18n";
+  import toastr from "toastr";
+
   import * as save from "../modules/save";
 
   export let state;
+
+  function saveWithMessage(callback) {
+    toastr.options = {
+      "positionClass" : "toast-top-center"
+    }
+
+    try {
+      callback();
+      toastr.success("Save success.");
+    } catch (_) {
+      toastr.error("Save failed.");
+    }
+  }
 </script>
 
 <section>
@@ -43,7 +58,7 @@
             { $_("saveForLater.asLink") }
           </li>-->
           <li class="list-group-item">
-            <div class="md-v-line pointer" on:click={() => save.saveToLocalStorage(state) }></div>
+            <div class="md-v-line pointer" on:click={() => saveWithMessage(() => { save.saveToLocalStorage(state) }) }></div>
             <i class="fas fa-archive mr-5"></i>
             { $_("saveForLater.asLocalStorage") }
           </li>
