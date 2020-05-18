@@ -19,7 +19,7 @@
 		availableLanguages = Object.keys(language.languageToCountryMap);
 
 	init({
-	  fallbackLocale: initialLanguage,
+	  fallbackLocale: language.fallBackLanguage,
 	  initialLocale: initialLanguage
 	});
 
