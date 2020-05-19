@@ -20,7 +20,8 @@
     }
   }
 
-  function openInTab() {
+  function openInTab(event) {
+    event.preventDefault();
     window.open(save.saveAsUrl(state), "_blank");
   }
 
@@ -87,7 +88,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="saveAsLinkModalLabal">  { $_("saveForLater.asLink") }</h5>
+          <h5 class="modal-title" id="saveAsLinkModalLabel">  { $_("saveForLater.asLink") }</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
