@@ -9,13 +9,13 @@ describe("save", () =>{
     localStorage.clear();
   });
 
-  it("should create new state", () => {
-    expect(save.loadFromLocalStorage()).to.deep.equal(new State())
+  it("should return undefined", () => {
+    expect(save.loadFromLocalStorage()).to.be.undefined;
   });
 
   it("should create new state", () => {
     save.saveToLocalStorage(new State([], 10));
 
-    expect(save.loadFromLocalStorage().price).to.equal(10)
+    expect(save.loadFromLocalStorage().price).to.equal(10);
   });
 });
