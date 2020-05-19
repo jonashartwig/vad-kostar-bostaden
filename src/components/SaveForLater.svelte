@@ -18,6 +18,8 @@
       toastr.error("Save failed.");
     }
   }
+
+  const supportsBlobsAndObjectUrl = Blob && window.URL && window.URL.createObjectURL
 </script>
 
 <section>
@@ -33,10 +35,7 @@
           { $_("saveForLater.introduction") }
 					<a class="badge collapse show multi-collapse-saveforlater collapse-no-transition" data-toggle="collapse" data-target=".multi-collapse-saveforlater" id="saveforlater-show-help" href="#saveforlater-help" role="button" aria-expanded="true" aria-controls="saveforlater-show-help saveforlater-show-help-1 saveforlater-show-help-2">{ $_("showMore") }...</a>
         </p>
-        <p class="collapse multi-collapse-saveforlater" id="saveforlater-help">
-          { $_("saveForLater.asFileDescription") }
-        </p>
-        {#if window.URL && window.URL.createObjectURL}
+        {#if supportsBlobsAndObjectUrl}
           <p class="collapse multi-collapse-saveforlater" id="saveforlater-help1">
             { $_("saveForLater.asFileDescription") }
           </p>
@@ -46,10 +45,10 @@
         </p>
         <p class="collapse multi-collapse-saveforlater" id="saveforlater-help-3">
           { $_("saveForLater.asLocalStorageDescription") }
-					<a data-toggle="collapse" data-target=".multi-collapse-saveforlater" href="#saveforlater-help" class="badge" role="button" aria-expanded="true" aria-controls="saveforlater-help-1 saveforlater-help-2 saveforlater-help-3 saveforlater-show-help">{ $_("showLess") }...</a>
+					<a data-toggle="collapse" data-target=".multi-collapse-saveforlater" href="#saveforlater-help" class="badge" role="button" aria-expanded="true" aria-controls="saveforlater-help-1 saveforlater-help-2 saveforlater-help-3">{ $_("showLess") }...</a>
         </p>
         <ul class="list-group">
-          {#if window.URL && window.URL.createObjectURL}
+          {#if supportsBlobsAndObjectUrl}
             <li class="list-group-item">
               <div class="md-v-line pointer" on:click={() => saveWithMessage(() => { save.saveAsFile(state) }) }></div>
               <i class="fas fa-download mr-5"></i>
