@@ -27,7 +27,7 @@ export function saveAsFile(state: State): void {
     a.style.display = 'none';
     a.href = url;
     // the filename you want
-    a.download = 'state.json';
+    a.download = 'vad-kostar-bostaden.json';
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(url);

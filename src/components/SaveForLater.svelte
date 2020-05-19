@@ -36,22 +36,26 @@
         <p class="collapse multi-collapse-saveforlater" id="saveforlater-help">
           { $_("saveForLater.asFileDescription") }
         </p>
-        <p class="collapse multi-collapse-saveforlater" id="saveforlater-help">
-          { $_("saveForLater.asFileDescription") }
-        </p>
-        <p class="collapse multi-collapse-saveforlater" id="saveforlater-help-1">
+        {#if window.URL && window.URL.createObjectURL}
+          <p class="collapse multi-collapse-saveforlater" id="saveforlater-help1">
+            { $_("saveForLater.asFileDescription") }
+          </p>
+        {/if}
+        <p class="collapse multi-collapse-saveforlater" id="saveforlater-help-2">
           { $_("saveForLater.asLinkDescription") }
         </p>
-        <p class="collapse multi-collapse-saveforlater" id="saveforlater-help-2">
+        <p class="collapse multi-collapse-saveforlater" id="saveforlater-help-3">
           { $_("saveForLater.asLocalStorageDescription") }
-					<a data-toggle="collapse" data-target=".multi-collapse-saveforlater" href="#saveforlater-help" class="badge" role="button" aria-expanded="true" aria-controls="saveforlater-help-1 saveforlater-help-2 saveforlater-show-help">{ $_("showLess") }...</a>
+					<a data-toggle="collapse" data-target=".multi-collapse-saveforlater" href="#saveforlater-help" class="badge" role="button" aria-expanded="true" aria-controls="saveforlater-help-1 saveforlater-help-2 saveforlater-help-3 saveforlater-show-help">{ $_("showLess") }...</a>
         </p>
         <ul class="list-group">
-          <li class="list-group-item">
-            <div class="md-v-line pointer" on:click={() => saveWithMessage(() => { save.saveAsFile(state) }) }></div>
-            <i class="fas fa-download mr-5"></i>
-            { $_("saveForLater.asFile") }
-          </li>
+          {#if window.URL && window.URL.createObjectURL}
+            <li class="list-group-item">
+              <div class="md-v-line pointer" on:click={() => saveWithMessage(() => { save.saveAsFile(state) }) }></div>
+              <i class="fas fa-download mr-5"></i>
+              { $_("saveForLater.asFile") }
+            </li>
+          {/if}
           <!--<li class="list-group-item">
             <div class="md-v-line pointer"></div>
             <i class="fas fa-external-link-alt mr-5"></i>
