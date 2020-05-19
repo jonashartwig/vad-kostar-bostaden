@@ -16,7 +16,7 @@ From the root of the project you should run this:
 `docker build -f Dockerfile-dev . -t vad-kostar-bostaden-dev:latest`
 
 To see the live results run:
-`docker run -v $(pwd):/app -p 8080:8080 vad-kostar-bostaden-dev:latest`
+`docker run -v $(pwd)/app:/app -p 8080:8080 vad-kostar-bostaden-dev:latest`
 and navigate to localhost:8080.
 
 #### node/npm

@@ -1,7 +1,7 @@
 FROM node:14-alpine3.11
 
 WORKDIR /app
-COPY . /app/
+COPY app/ .
 
 RUN npm ci --ignore-scripts && \
   npm run build && \

@@ -82,7 +82,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col text-center">
-				{ $_("footer.visitUs") } <a href="https://github.com/jonashartwig/vad-kostar-bostaden">github</a>
+				{ $_("footer.visitUs") } <u><a href="https://github.com/jonashartwig/vad-kostar-bostaden">github</a></u>
 			</div>
 		</div>
 	</div>

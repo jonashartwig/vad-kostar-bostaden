@@ -20,7 +20,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <input type=range bind:value={state.interest} min=0.005 max=0.05 step=0.001>
+        <input type=range bind:value={state.interest} min=0.005 max=0.05 step=0.0001>
       </div>
     </div>
     <div class="row">

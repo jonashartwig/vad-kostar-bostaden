@@ -1,5 +1,5 @@
-import { expect } from 'chai';
-import mortgageDeed from '../src/modules/mortgage_deed';
+import { expect } from "chai";
+import mortgageDeed from "../src/modules/mortgage_deed";
 
 describe("pantbrev", () => {
   it("should calculte right for my house", () => {

@@ -13,6 +13,7 @@ input[type=range] {
 p {
   margin-top: 0.75rem;
 }
+
 .form-label-group {
   position: relative;
   margin-bottom: 1rem;
@@ -91,6 +92,10 @@ p {
 
 footer * a {
   color: white;
+}
+
+footer {
+  margin-top: 1.5rem;
 }
 
 .collapse-no-transition {
