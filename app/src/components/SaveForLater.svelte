@@ -30,6 +30,10 @@
     saveWithMessage(() => copy(window.location.href + save.saveAsUrl(state)));
   }
 
+  function saveAsFile() {
+    saveWithMessage(() => { save.saveAsFile(state) })
+  }
+
   const supportsBlobsAndObjectUrl = Blob && window.URL && window.URL.createObjectURL
 </script>
 
@@ -61,7 +65,7 @@
         <ul class="list-group">
           {#if supportsBlobsAndObjectUrl}
             <li class="list-group-item">
-              <div class="md-v-line pointer" on:click={() => saveWithMessage(() => { save.saveAsFile(state) }) }></div>
+              <div class="md-v-line pointer" on:click={ saveAsFile }></div>
               <i class="fas fa-download mr-5"></i>
               { $_("saveForLater.asFile") }
             </li>
@@ -95,12 +99,12 @@
         </div>
         <div class="modal-body">
           <p>
-            <a href="#saveAsLinkModal" on:click={openInTab}>
+            <a href="#saveAsLinkModal" on:click={ openInTab }>
               { $_("saveForLater.clickHereForTab") } &nbsp;
               <i class="fas fa-external-link-alt"></i>
             </a>
             .
-            { $_("saveForLater.orClickHereBeforeHere") } <a href="#saveAsLinkModal" on:click={copyToClipboard}>{ $_("saveForLater.orClickHere") }</a> { $_("saveForLater.orClickHereAfterHere") }.
+            { $_("saveForLater.orClickHereBeforeHere") } <a href="#saveAsLinkModal" on:click={ copyToClipboard }>{ $_("saveForLater.orClickHere") }</a> { $_("saveForLater.orClickHereAfterHere") }.
           </p>
         </div>
         <div class="modal-footer">
