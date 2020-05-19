@@ -17,3 +17,18 @@ export function loadFromLocalStorage(): State {
 
   return State.deserializeFromString(state);
 }
+
+export function saveAsFile(state: State): void {
+  const serializedString = state.serializeToString(),
+    blob = new Blob([serializedString], { type : "application/json" }),
+    url = window.URL.createObjectURL(blob),
+    a = document.createElement('a');
+
+    a.style.display = 'none';
+    a.href = url;
+    // the filename you want
+    a.download = 'state.json';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+}

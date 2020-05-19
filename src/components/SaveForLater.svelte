@@ -47,12 +47,12 @@
 					<a data-toggle="collapse" data-target=".multi-collapse-saveforlater" href="#saveforlater-help" class="badge" role="button" aria-expanded="true" aria-controls="saveforlater-help-1 saveforlater-help-2 saveforlater-show-help">{ $_("showLess") }...</a>
         </p>
         <ul class="list-group">
-          <!--<li class="list-group-item">
-            <div class="md-v-line pointer"></div>
+          <li class="list-group-item">
+            <div class="md-v-line pointer" on:click={() => saveWithMessage(() => { save.saveAsFile(state) }) }></div>
             <i class="fas fa-download mr-5"></i>
             { $_("saveForLater.asFile") }
           </li>
-          <li class="list-group-item">
+          <!--<li class="list-group-item">
             <div class="md-v-line pointer"></div>
             <i class="fas fa-external-link-alt mr-5"></i>
             { $_("saveForLater.asLink") }

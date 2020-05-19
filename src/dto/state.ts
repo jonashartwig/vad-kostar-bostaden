@@ -14,7 +14,7 @@ export default class State {
   @JsonProperty() pantbrev: number;
   @JsonProperty() interest: number;
 
-  constructor(borrowers: Array<Borrower> = [], price: number = 0, pantbrev: number = 0, interest: number = 0) {
+  constructor(borrowers: Array<Borrower> = [], price: number = 0, pantbrev: number = 0.02 * price, interest: number = 0.0133) {
     this.borrowers = borrowers;
     this.price = price;
     this.pantbrev = pantbrev;
@@ -89,12 +89,24 @@ export default class State {
     return State.serializeToString(this);
   }
 
+  serializeToBase64String(): string {
+    return State.serializeToBase64String(this);
+  }
+
   static serialize(state: State): object {
     return serializeAsJson(state);
   }
 
+  static serializeToBase64String(state: State): string {
+    return btoa(State.serializeToString(state));
+  }
+
   static serializeToString(state: State): string {
     return JSON.stringify(State.serialize(state));
+  }
+
+  static deserializeFromBase64String(base64String: string): State {
+    return State.deserializeFromString(atob(base64String));
   }
 
   static deserializeFromString(json: string): State {
