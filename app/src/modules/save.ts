@@ -12,7 +12,7 @@ export function loadFromLocalStorage(): State {
   const state = localStorage.getItem(localStorageKey);
 
   if(!state) {
-    return new State();
+    return undefined;
   }
 
   return State.deserializeFromString(state);
@@ -31,4 +31,28 @@ export function saveAsFile(state: State): void {
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(url);
+}
+
+export function saveAsUrl(state: State): string {
+  return "?state=" + state.serializeToBase64String()
+}
+
+export function canBeLoadedFromParam() {
+  const urlSearchParams = new URLSearchParams(window.location.search)
+
+  if(!urlSearchParams.has("state")) {
+    return undefined;
+  }
+
+  return urlSearchParams.get("state");
+}
+
+export function loadFromUrl(): State {
+  const state = canBeLoadedFromParam()
+
+  if(!state) {
+    return undefined;
+  }
+
+  return State.deserializeFromBase64String(state)
 }

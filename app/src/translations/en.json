@@ -86,6 +86,10 @@
     "asLinkDescription": "You can generate a link that you can save or share with others. The data will be part of the link. If you navigate to it, the data will be filled back into the page.",
     "asLink": "Generate a link.",
     "asLocalStorageDescription": "You can choose to have your browser take care of the data. Choosing this will not let you share the data. It will be inserted automatically when you come back.",
-    "asLocalStorage": "Let the browser manage it."
+    "asLocalStorage": "Let the browser manage it.",
+    "clickHereForTab": "Click here to open in a new tab",
+    "orClickHereBeforeHere": "Or click",
+    "orClickHere": "here",
+    "orClickHereAfterHere": "to copy the link" 
   }
 }

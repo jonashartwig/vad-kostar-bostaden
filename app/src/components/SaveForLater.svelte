@@ -1,5 +1,6 @@
 <script>
   import { _, getMessageFormatter } from "svelte-i18n";
+  import copy from "copy-to-clipboard";
   import toastr from "toastr";
 
   import * as save from "../modules/save";
@@ -17,6 +18,15 @@
     } catch (_) {
       toastr.error("Save failed.");
     }
+  }
+
+  function openInTab() {
+    window.open(save.saveAsUrl(state), "_blank");
+  }
+
+  function copyToClipboard(event) {
+    event.preventDefault();
+    saveWithMessage(() => copy(window.location.href + save.saveAsUrl(state)));
   }
 
   const supportsBlobsAndObjectUrl = Blob && window.URL && window.URL.createObjectURL
@@ -55,11 +65,11 @@
               { $_("saveForLater.asFile") }
             </li>
           {/if}
-          <!--<li class="list-group-item">
-            <div class="md-v-line pointer"></div>
+          <li class="list-group-item">
+            <div class="md-v-line pointer" data-toggle="modal" data-target="#saveAsLinkModal"></div>
             <i class="fas fa-external-link-alt mr-5"></i>
             { $_("saveForLater.asLink") }
-          </li>-->
+          </li>
           <li class="list-group-item">
             <div class="md-v-line pointer" on:click={() => saveWithMessage(() => { save.saveToLocalStorage(state) }) }></div>
             <i class="fas fa-archive mr-5"></i>
@@ -70,6 +80,31 @@
     </div>
     <div class="row">
       <div class="col">
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="saveAsLinkModal" tabindex="-1" role="dialog" aria-labelledby="saveAsLinkModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="saveAsLinkModalLabal">  { $_("saveForLater.asLink") }</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            <a href="#saveAsLinkModal" on:click={openInTab}>
+              { $_("saveForLater.clickHereForTab") } &nbsp;
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+            .
+            { $_("saveForLater.orClickHereBeforeHere") } <a href="#saveAsLinkModal" on:click={copyToClipboard}>{ $_("saveForLater.orClickHere") }</a> { $_("saveForLater.orClickHereAfterHere") }.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>

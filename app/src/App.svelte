@@ -8,7 +8,7 @@
 	import Interest from "./components/Interest";
 	import SaveForLater from "./components/SaveForLater";
 	import * as language from "./modules/language";
-	import { loadFromLocalStorage } from "./modules/save";
+	import { loadFromLocalStorage, loadFromUrl, canBeLoadedFromParam } from "./modules/save";
 	import en from "./translations/en.json"
 	import de from "./translations/de.json"
 	import sv from "./translations/sv.json"
@@ -33,7 +33,10 @@
 	addMessages("de", de);
 	addMessages("fi", fi);
 
-	export let state = loadFromLocalStorage();
+	export let state = loadFromUrl() || loadFromLocalStorage() || new State();
+	if(canBeLoadedFromParam()) {
+		window.history.replaceState({}, document.title, "/")
+	}
 </script>
 
 <header class="vkb-main-color">
