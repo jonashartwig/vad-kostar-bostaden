@@ -1,4 +1,4 @@
-import { expect, use } from "chai"
+import { expect, use } from "chai";
 import chaiExclude from 'chai-exclude';
 
 import Borrower from "../src/dto/borrower";
@@ -26,6 +26,7 @@ describe("state", () => {
           "name": "Emelie", "downPayment":0
         }
       ],
+      "type": 1,
       "price": 5385000,
       "pantbrev": 1450400,
       "interest": 0.0133
@@ -33,7 +34,7 @@ describe("state", () => {
   });
 
   it("should serialize as string", () => {
-    expect(getState().serializeToString()).to.deep.equal("{\"borrowers\":[{\"salary\":59000,\"name\":\"Jonas\",\"downPayment\":0},{\"salary\":46700,\"name\":\"Emelie\",\"downPayment\":0}],\"price\":5385000,\"pantbrev\":1450400,\"interest\":0.0133}");
+    expect(getState().serializeToString()).to.deep.equal("{\"borrowers\":[{\"salary\":59000,\"name\":\"Jonas\",\"downPayment\":0},{\"salary\":46700,\"name\":\"Emelie\",\"downPayment\":0}],\"price\":5385000,\"pantbrev\":1450400,\"interest\":0.0133,\"type\":1}");
   });
 
   it("should deserialize from object", () => {
