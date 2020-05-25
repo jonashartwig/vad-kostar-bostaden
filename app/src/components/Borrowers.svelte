@@ -1,6 +1,7 @@
 <script>
   import { _, number } from "svelte-i18n";
-	import Borrower from "./Borrower.svelte"
+  import CollapsableIntroduction from "./CollapsableIntroduction.svelte";
+	import Borrower from "./Borrower.svelte";
   import { debtRatioMultiplyer } from "../modules/debt_ratio";
   import { totalPercentage } from "../modules/down_payment";
 
@@ -14,13 +15,12 @@
 				<h2>{ $_("borrowers.title") }</h2>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col">
-				<p>
-					{ $_("borrowers.introduction") }
-					<a class="badge collapse show multi-collapse-borrowers collapse-no-transition" data-toggle="collapse" data-target=".multi-collapse-borrowers" id="borrowers-show-help" href="#borrowers-help" role="button" aria-expanded="true" aria-controls="borrowers-help-1 borrowers-help-2 borrowers-show-help">{ $_("showMore") }...</a>
-				</p>
-				<p class="collapse multi-collapse-borrowers" id="borrowers-help-1">
+    <CollapsableIntroduction>
+      <span slot="introduction">
+        { $_("borrowers.introduction") }
+      </span>
+      <span slot="help">
+        <p>
           {
             $_({
               id: "borrowers.example",
@@ -34,20 +34,17 @@
               }
             })
           }
-				</p>
-				<p class="collapse multi-collapse-borrowers" id="borrowers-help-2">
-					{
-            $_({
-              id: "borrowers.downPayment",
-              values: {
-                downPaymentPercent: $number(totalPercentage * 100)
-              }
-            })
-          }
-					<a data-toggle="collapse" data-target=".multi-collapse-borrowers" href="#borrowers-help" class="badge" role="button" aria-expanded="true" aria-controls="borrowers-help-1 borrowers-help-2 borrowers-show-help">{ $_("showLess") }...</a>
-				</p>
-			</div>
-		</div>
+        </p>
+        {
+          $_({
+            id: "borrowers.downPayment",
+            values: {
+              downPaymentPercent: $number(totalPercentage * 100)
+            }
+          })
+        }
+      </span>
+    </CollapsableIntroduction>
 		<div class="row">
 			<div class="col">
 				<table class="table">

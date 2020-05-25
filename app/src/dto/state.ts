@@ -1,6 +1,7 @@
 import { JsonProperty, Serializable, deserialize as deserializeAsJson, serialize as serializeAsJson } from "typescript-json-serializer";
 
 import Borrower from "./borrower";
+import { Type } from "./type";
 import debtRatio from "../modules/debt_ratio";
 import * as downPayment from "../modules/down_payment";
 import amortizationPercent from "../modules/amortization_percent";
@@ -13,11 +14,13 @@ export default class State {
   @JsonProperty() price: number;
   @JsonProperty() pantbrev: number;
   @JsonProperty() interest: number;
+  @JsonProperty() type: Type;
 
-  constructor(borrowers: Array<Borrower> = [], price: number = 0, pantbrev: number = 0.02 * price, interest: number = 0.0133) {
+  constructor(borrowers: Array<Borrower> = [], price: number = 0, pantbrev: number = 0.02 * price, interest: number = 0.0133, type = Type.APPARTMENT) {
     this.borrowers = borrowers;
     this.price = price;
     this.pantbrev = pantbrev;
+    this.type = type;
     this.interest = interest;
   }
 
@@ -87,6 +90,14 @@ export default class State {
 
   serializeToString(): string {
     return State.serializeToString(this);
+  }
+
+  isHouse(): boolean {
+    return this.type == Type.HOUSE || this.type == undefined;
+  }
+
+  isAppartment(): boolean {
+    return !this.isHouse();
   }
 
   serializeToBase64String(): string {

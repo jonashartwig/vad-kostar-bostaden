@@ -1,7 +1,9 @@
 <script>
   import { _, number } from "svelte-i18n";
+
+  import CollapsableIntroduction from "./CollapsableIntroduction.svelte";
   import * as downPayment from "../modules/down_payment";
-	import titleDeed, { fee as titleDeedFee, percentage as titleDeedPercent } from "../modules/title_deed"
+	import titleDeed, { fee as titleDeedFee, percentage as titleDeedPercent } from "../modules/title_deed";
 	import mortgageDeed, { percentage as mortgageDeedPercent } from "../modules/mortgage_deed";
   import loanToValue from "../modules/loan_to_value";
 
@@ -15,13 +17,12 @@
         <h2>{ $_("expenses.title") }</h2>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <p>
-          { $_("expenses.introduction") }
-          <a id="expenses-show-help" data-toggle="collapse" data-target=".multi-collapse-expenses" href="#expenses-help" class="badge collapse show multi-collapse-expenses collapse-no-transition" role="button" aria-expanded="true" aria-controls="expenses-help-1 expenses-help-2 expenses-show-help">{ $_("showMore") }...</a>
-        </p>
-				<p class="collapse multi-collapse-expenses" id="expenses-help-1">
+    <CollapsableIntroduction>
+      <span slot="introduction">
+        { $_("expenses.introduction") }
+      </span>
+      <span slot="help">
+				<p>
           {
             $_({
               id: "expenses.downPayment",
@@ -33,22 +34,19 @@
             })
           }
         </p>
-				<p class="collapse multi-collapse-expenses" id="expenses-help-2">
-          {
-            $_({
-              id: "expenses.taxes",
-              values: {
-                titleDeedFee: $number(titleDeedFee),
-                titleDeedPercent: $number(titleDeedPercent * 100),
-                price: $number(5000000),
-                titleDeed: $number(75000)
-              }
-            })
-          }
-          <a data-toggle="collapse" data-target=".multi-collapse-expenses" href="#expenses-help" class="badge" role="button" aria-expanded="true" aria-controls="expenses-show-help">{ $_("showLess") }...</a>
-        </p>
-      </div>
-    </div>
+        {
+          $_({
+            id: "expenses.taxes",
+            values: {
+              titleDeedFee: $number(titleDeedFee),
+              titleDeedPercent: $number(titleDeedPercent * 100),
+              price: $number(5000000),
+              titleDeed: $number(75000)
+            }
+          })
+        }
+      </span>
+    </CollapsableIntroduction>
     <div class="row">
       <div class="col">
         <div class="card h-100">

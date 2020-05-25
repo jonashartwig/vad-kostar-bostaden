@@ -114,3 +114,12 @@ footer {
 .pointer {
   cursor: pointer;
 }
+
+button.selected {
+  background-color: #F68E5F;
+  color: white;
+}
+
+.row.collapse {
+  margin-bottom: 1rem;
+}

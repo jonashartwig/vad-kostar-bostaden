@@ -3,6 +3,7 @@
   import copy from "copy-to-clipboard";
   import toastr from "toastr";
 
+  import CollapsableIntroduction from "./CollapsableIntroduction.svelte";
   import * as save from "../modules/save";
 
   export let state;
@@ -44,24 +45,24 @@
         <h2>{ $_("saveForLater.title") }</h2>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <p>
-          { $_("saveForLater.introduction") }
-					<a class="badge collapse show multi-collapse-saveforlater collapse-no-transition" data-toggle="collapse" data-target=".multi-collapse-saveforlater" id="saveforlater-show-help" href="#saveforlater-help" role="button" aria-expanded="true" aria-controls="saveforlater-show-help saveforlater-show-help-1 saveforlater-show-help-2">{ $_("showMore") }...</a>
-        </p>
+    <CollapsableIntroduction>
+      <span slot="introduction">
+        { $_("saveForLater.introduction") }
+      </span>
+      <span slot="help">
         {#if supportsBlobsAndObjectUrl}
-          <p class="collapse multi-collapse-saveforlater" id="saveforlater-help1">
+          <p>
             { $_("saveForLater.asFileDescription") }
           </p>
         {/if}
-        <p class="collapse multi-collapse-saveforlater" id="saveforlater-help-2">
+        <p>
           { $_("saveForLater.asLinkDescription") }
         </p>
-        <p class="collapse multi-collapse-saveforlater" id="saveforlater-help-3">
-          { $_("saveForLater.asLocalStorageDescription") }
-					<a data-toggle="collapse" data-target=".multi-collapse-saveforlater" href="#saveforlater-help" class="badge" role="button" aria-expanded="true" aria-controls="saveforlater-help-1 saveforlater-help-2 saveforlater-help-3">{ $_("showLess") }...</a>
-        </p>
+        { $_("saveForLater.asLocalStorageDescription") }
+      </span>
+    </CollapsableIntroduction>
+    <div class="row">
+      <div class="col">
         <ul class="list-group">
           {#if supportsBlobsAndObjectUrl}
             <li class="list-group-item">
@@ -81,10 +82,6 @@
             { $_("saveForLater.asLocalStorage") }
           </li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
       </div>
     </div>
   </div>

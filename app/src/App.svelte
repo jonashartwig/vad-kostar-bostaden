@@ -2,6 +2,7 @@
 	import { _, register, init, getLocaleFromNavigator, locale, addMessages, locales } from "svelte-i18n";
 	import "./styles.css";
 	import State from "./dto/state";
+	import Introduction from "./components/Introduction";
 	import Borrowers from "./components/Borrowers";
 	import Estate from "./components/Estate";
 	import Expenses from "./components/Expenses";
@@ -61,20 +62,7 @@
 	</div>
 </header>
 <main>
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<p>
-						{ $_("introduction.welcome") }
-					</p>
-					<p>
-						{ $_("introduction.dataPolicy") }
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
+	<Introduction bind:state={state} />
 	<Borrowers bind:state={state} />
 	<Estate bind:state={state} />
 	<Interest bind:state={state} />

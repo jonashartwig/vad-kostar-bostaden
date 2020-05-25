@@ -1,5 +1,7 @@
 <script>
   import { _, number } from "svelte-i18n";
+
+  import CollapsableIntroduction from "./CollapsableIntroduction.svelte";
   import { total as requiredDownPayment } from "../modules/down_payment";
   import { percentage as mortgageDeedPercent, fee as mortgageDeedFee } from "../modules/mortgage_deed";
 	import amortizationPercent, { loanToDebtRatioPercent, loanToValuePercent, isLoanMoreThenHalfButLessThenLoanLevel, loanLevelValueStep1, loanLevelValueStep2, isLoanHalfOrLessOfPrice } from "../modules/amortization_percent";
@@ -14,33 +16,29 @@
         <h2>{ $_("estate.title") }</h2>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <p>
-          { $_("estate.introduction") }
-          <a class="badge collapse show multi-collapse-estate collapse-no-transition" data-toggle="collapse" data-target=".multi-collapse-estate" href="#estate-help" role="button" aria-expanded="true" id="estate-show-help" aria-controls="estate-help estate-show-help">{ $_("showMore") }...</a>
-        </p>
-        <p class="collapse multi-collapse-estate" id="estate-help">
-          {
-            $_({
-              id: "estate.example",
-              values: {
-                mortgageDeedPercent: $number(mortgageDeedPercent * 100),
-                price: $number(5000000),
-                downPayment: $number(750000),
-                loan: $number(4250000),
-                mortgageDeed: $number(1200000),
-                mortgageDeedRequired: $number(3050000),
-                mortgageDeedToPay: $number(61000),
-                mortgageDeedFee: $number(mortgageDeedFee),
-                bankFee: $number(1500)
-              }
-            })
-          }
-          <a data-toggle="collapse" data-target=".multi-collapse-estate" href="#estate-help" class="badge" role="button" aria-expanded="true" aria-controls="estate-show-help">{ $_("showLess") }...</a>
-        </p>
-      </div>
-    </div>
+    <CollapsableIntroduction>
+      <span slot="introduction">
+        { $_("estate.introduction") }
+      </span>
+      <span slot="help">
+        {
+          $_({
+            id: "estate.example",
+            values: {
+              mortgageDeedPercent: $number(mortgageDeedPercent * 100),
+              price: $number(5000000),
+              downPayment: $number(750000),
+              loan: $number(4250000),
+              mortgageDeed: $number(1200000),
+              mortgageDeedRequired: $number(3050000),
+              mortgageDeedToPay: $number(61000),
+              mortgageDeedFee: $number(mortgageDeedFee),
+              bankFee: $number(1500)
+            }
+          })
+        }
+      </span>
+    </CollapsableIntroduction>
     <div class="row">
       <div class="col">
         <div class="form-label-group">
