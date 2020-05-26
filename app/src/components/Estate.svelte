@@ -42,13 +42,13 @@
     <div class="row">
       <div class="col">
         <div class="form-label-group">
-          <input id="estate-price" class="form-control" placeholder="Price" type="text" bind:value={state.price} />
+          <input id="estate-price" class="form-control" placeholder="Price" type="number" bind:value={state.price} />
           <label for="estate-price">{ $_("estate.price") }</label>
         </div>
       </div>
       <div class="col">
         <div class="form-label-group">
-          <input id="estate-pantbrev" class="form-control" placeholder="Pantbrev" type="text" bind:value={state.pantbrev} />
+          <input id="estate-pantbrev" class="form-control" placeholder="Pantbrev" type="number" bind:value={state.pantbrev} />
           <label for="estate-pantbrev">{ $_("estate.mortgageDeed") }</label>
         </div>
       </div>

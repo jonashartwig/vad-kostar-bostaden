@@ -23,7 +23,7 @@
 		toastr(
 			loadFromFile(event.target.files)
 				.then(loadedState => state = loadedState)
-			)
+		)
 	}
 </script>
 
