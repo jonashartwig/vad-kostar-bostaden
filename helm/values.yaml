@@ -1,0 +1,53 @@
+# Default values for vad-kostar-bostaden.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+publicUrl: vkb.hilsendeger.dev
+
+image:
+  repository: jonashartwig/vad-kostar-bostaden
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart version.
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+ limits:
+   cpu: 0.3
+   memory: 512Mi
+ requests:
+   cpu: 0.1
+   memory: 128Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
