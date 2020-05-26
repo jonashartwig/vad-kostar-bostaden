@@ -18,7 +18,7 @@ jobs:
         repository: jonashartwig/vad-kostar-bostaden
         tags: latest,${{ github.sha }}
         push: true
-    - uses: 'deliverybot/helm@v1'
+    - uses: deliverybot/helm@v1.5.0
       with:
         release: 'vad-kostar-bostaden'
         namespace: 'jonas'
