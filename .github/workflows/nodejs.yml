@@ -20,14 +20,11 @@ jobs:
         push: true
     - uses: deliverybot/helm@v1.5.0
       with:
-        release: 'vad-kostar-bostaden'
-        namespace: 'jonas'
-        chart: 'helm'
-        token: '${{ github.token }}'
-        helm: "helm3"
-        version: "${{ github.sha }}"
+        release: vad-kostar-bostaden
+        namespace: jonas
+        chart: helm
         values: |
           image:
-            tag: latest
+            tag: ${{ github.sha }}
       env:
-        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
+        KUBECONFIG_FILE: "${{ secrets.KUBECONFIG }}"
