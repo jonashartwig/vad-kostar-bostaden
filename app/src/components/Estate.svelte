@@ -2,6 +2,7 @@
   import { _, number } from "svelte-i18n";
 
   import CollapsableIntroduction from "./CollapsableIntroduction.svelte";
+  import { Type } from "../dto/type";
   import { total as requiredDownPayment } from "../modules/down_payment";
   import { percentage as mortgageDeedPercent, fee as mortgageDeedFee } from "../modules/mortgage_deed";
 	import amortizationPercent, { loanToDebtRatioPercent, loanToValuePercent, isLoanMoreThenHalfButLessThenLoanLevel, loanLevelValueStep1, loanLevelValueStep2, isLoanHalfOrLessOfPrice } from "../modules/amortization_percent";
@@ -48,7 +49,7 @@
       </div>
       <div class="col">
         <div class="form-label-group">
-          <input id="estate-pantbrev" class="form-control" placeholder="Pantbrev" type="number" bind:value={state.pantbrev} />
+          <input id="estate-pantbrev" class="form-control" placeholder="Pantbrev" type="number" bind:value={state.pantbrev} disabled={state.type == Type.APPARTMENT} />
           <label for="estate-pantbrev">{ $_("estate.mortgageDeed") }</label>
         </div>
       </div>

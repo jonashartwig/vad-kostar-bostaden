@@ -2,6 +2,7 @@
   import { _, number } from "svelte-i18n";
 
   import CollapsableIntroduction from "./CollapsableIntroduction.svelte";
+  import { Type } from "../dto/type";
   import * as downPayment from "../modules/down_payment";
 	import titleDeed, { fee as titleDeedFee, percentage as titleDeedPercent } from "../modules/title_deed";
 	import mortgageDeed, { percentage as mortgageDeedPercent } from "../modules/mortgage_deed";
@@ -77,7 +78,7 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col" class:d-none={state.type == Type.APPARTMENT}>
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">{ $_("expenses.card.taxes.title") }</h5>
