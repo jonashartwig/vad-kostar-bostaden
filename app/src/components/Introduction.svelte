@@ -1,6 +1,8 @@
 <script>
 	import { _ } from "svelte-i18n";
 
+	import { loadFromFile } from "../modules/save";
+  import toastr from "../modules/toastr";
   import { Type } from "../dto/type";
   import CollapsableIntroduction from "./CollapsableIntroduction.svelte"
 
@@ -16,6 +18,13 @@
   function asAppartment() {
     state.type = Type.APPARTMENT
   }
+
+	function loadFile(event) {
+		toastr(
+			loadFromFile(event.target.files)
+				.then(loadedState => state = loadedState)
+			)
+	}
 </script>
 
 <section>
@@ -35,6 +44,7 @@
       <div class="col">
         <p>
           { $_("introduction.type") }
+					<input type="file" on:change={loadFile} />
         </p>
       </div>
     </div>

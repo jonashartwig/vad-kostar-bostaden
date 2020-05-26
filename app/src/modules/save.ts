@@ -33,6 +33,26 @@ export function saveAsFile(state: State): void {
     window.URL.revokeObjectURL(url);
 }
 
+export async function loadFromFile(files: FileList): Promise<State> {
+  const file = files[0];
+  if (!file) {
+    return Promise.reject();
+  }
+
+  function getContent(event: ProgressEvent<FileReader>): string | ArrayBuffer {
+    return event.target.result;
+  }
+
+  return await new Promise((resolve, _) => {
+    const fileReader = new FileReader();
+
+    fileReader.onload = resolve;
+    fileReader.readAsText(file);
+  })
+    .then(getContent)
+    .then(content => State.deserializeFromString(<string>content));
+}
+
 export function saveAsUrl(state: State): string {
   return "?state=" + state.serializeToBase64String()
 }

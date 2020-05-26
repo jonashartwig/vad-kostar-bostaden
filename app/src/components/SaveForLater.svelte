@@ -1,7 +1,7 @@
 <script>
   import { _, getMessageFormatter } from "svelte-i18n";
   import copy from "copy-to-clipboard";
-  import toastr from "toastr";
+  import { withCallback } from "../modules/toastr";
 
   import CollapsableIntroduction from "./CollapsableIntroduction.svelte";
   import * as save from "../modules/save";
@@ -9,16 +9,7 @@
   export let state;
 
   function saveWithMessage(callback) {
-    toastr.options = {
-      "positionClass" : "toast-top-center"
-    }
-
-    try {
-      callback();
-      toastr.success("Save success.");
-    } catch (_) {
-      toastr.error("Save failed.");
-    }
+    withCallback(callback);
   }
 
   function openInTab(event) {
