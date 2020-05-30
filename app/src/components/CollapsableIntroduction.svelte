@@ -4,7 +4,8 @@
 
   const id = v4(),
     idHelp = `${id}-show-help`,
-    multiCollapseClassname = `multi-collapse-${id}`;
+    multiCollapseClassname = `multi-collapse-${id}`,
+    SLOTS = $$props.$$slots;
 </script>
 
 <div class="row">
@@ -12,6 +13,7 @@
     <p>
       <slot name="introduction" />
       <a class="{multiCollapseClassname} badge collapse show collapse-no-transition"
+        class:d-none={!SLOTS.help}
         data-toggle="collapse" href="#{id}" role="button"
         aria-expanded="true" aria-controls="{id} {idHelp}"
         data-target=".{multiCollapseClassname}" id="{idHelp}"
@@ -21,7 +23,7 @@
     </p>
   </div>
 </div>
-<div class="row collapse {multiCollapseClassname}" id={id}>
+<div class="row collapse {multiCollapseClassname}" class:d-none={!SLOTS.help} id={id}>
   <div class="col">
     <slot name="help" />
     <a data-toggle="collapse" data-target=".{multiCollapseClassname}"

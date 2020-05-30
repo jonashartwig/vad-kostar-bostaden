@@ -8,7 +8,7 @@ export default class Borrower {
   @JsonProperty() downPayment: number;
   private id: string;
 
-  constructor(name: string, salary: number, downPayment: number) {
+  constructor(name: string = "", salary: number = 0, downPayment: number = 0) {
     this.name = name;
     this.salary = salary;
     this.downPayment = downPayment;

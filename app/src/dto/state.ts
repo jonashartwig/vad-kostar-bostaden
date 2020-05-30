@@ -24,8 +24,8 @@ export default class State {
     this.interest = interest;
   }
 
-  addBorrower(borrower: Borrower): State {
-    this.borrowers = [...this.borrowers, borrower || new Borrower("", 0, 0)];
+  addBorrower(borrower: Borrower = new Borrower()): State {
+    this.borrowers = [...this.borrowers, borrower];
 
     return this;
   }

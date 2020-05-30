@@ -4,7 +4,7 @@
 	import { loadFromFile } from "../modules/save";
   import toastr from "../modules/toastr";
   import { Type } from "../dto/type";
-  import CollapsableIntroduction from "./CollapsableIntroduction.svelte"
+  import CollapsableSection from "./CollapsableSection.svelte";
 
   export let state;
 
@@ -29,7 +29,7 @@
 
 <section>
 	<div class="container">
-		<CollapsableIntroduction>
+		<CollapsableSection>
 			<span slot="introduction">
 				<p>
 					{ $_("introduction.welcome") }
@@ -39,30 +39,30 @@
 			<span slot="help">
 				{ $_("introduction.motivation") }
 			</span>
-		</CollapsableIntroduction>
-    <div class="row">
-      <div class="col">
-        <p>
-          { $_("introduction.type") }
-					<input type="file" on:change={loadFile} />
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col text-center">
-        <button type="button" class="btn text-center" on:click={asAppartment} class:selected={isAppartment}>
-          <i class="fas fa-building fa-3x"></i>
-          <br />
-          { $_("introduction.appartment") }
-        </button>
-      </div>
-      <div class="col text-center">
-        <button type="button" class="btn text-center" on:click={asHouse} class:selected={isHouse}>
-          <i class="fas fa-home fa-3x"></i>
-          <br />
-          { $_("introduction.house") }
-        </button>
-      </div>
-    </div>
+	    <div class="row" slot="content">
+	      <div class="col">
+	        <p>
+	          { $_("introduction.type") }
+						<input type="file" on:change={loadFile} />
+	        </p>
+	      </div>
+	    </div>
+	    <div class="row" slot="content">
+	      <div class="col text-center">
+	        <button type="button" class="btn text-center" on:click={asAppartment} class:selected={isAppartment}>
+	          <i class="fas fa-building fa-3x"></i>
+	          <br />
+	          { $_("introduction.appartment") }
+	        </button>
+	      </div>
+	      <div class="col text-center">
+	        <button type="button" class="btn text-center" on:click={asHouse} class:selected={isHouse}>
+	          <i class="fas fa-home fa-3x"></i>
+	          <br />
+	          { $_("introduction.house") }
+	        </button>
+	      </div>
+	    </div>
+		</CollapsableSection>
 	</div>
 </section>
