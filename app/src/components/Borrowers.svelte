@@ -8,7 +8,7 @@
 
 	export let state;
 </script>
-<CollapsableSection>
+<CollapsableSection let:minimized>
   <span slot="title">
     { $_("borrowers.title") }
   </span>
@@ -40,7 +40,7 @@
       })
     }
   </span>
-	<div class="row" slot="content">
+	<div class="row" slot="content" class:d-none={minimized}>
 		<div class="col">
 			<table class="table">
 			  <thead>
@@ -69,7 +69,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="row" slot="content">
+	<div class="row" slot="content" class:d-none={minimized}>
 		<div class="col">
 			<p>
         { @html

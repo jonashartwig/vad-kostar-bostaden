@@ -10,7 +10,7 @@
   export let state;
 </script>
 
-<CollapsableSection>
+<CollapsableSection let:minimized>
   <span slot="title">
     { $_("estate.title") }
   </span>
@@ -35,7 +35,7 @@
       })
     }
   </span>
-  <div class="row" slot="content">
+  <div class="row" slot="content" class:d-none={minimized}>
     <div class="col">
       <div class="form-label-group">
         <input id="estate-price" class="form-control" placeholder="Price" type="number" bind:value={state.price} />
@@ -49,7 +49,7 @@
       </div>
     </div>
   </div>
-  <div class="row" slot="content">
+  <div class="row" slot="content" class:d-none={minimized}>
     <div class="col">
       <p>
         { @html
