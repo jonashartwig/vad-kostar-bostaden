@@ -25,6 +25,7 @@ jobs:
         namespace: jonas
         chart: helm
         values: |
-          image.tag: ${{ github.sha }}
+          image:
+            tag: ${{ github.sha }}
       env:
         KUBECONFIG_FILE: "${{ secrets.KUBECONFIG }}"
