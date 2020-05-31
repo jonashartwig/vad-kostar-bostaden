@@ -24,7 +24,7 @@ jobs:
         release: vad-kostar-bostaden
         namespace: jonas
         chart: helm
-        values: |
+        values:
           image:
             tag: ${{ github.sha }}
       env:
