@@ -3,8 +3,8 @@
   "language": "Language",
   "showMore": "Show more",
   "showLess": "Show less",
-  "downPayment": "Down Payment (kontantinsats)",
-  "mortgageDeed": "Mortgage Deed (pantbrev)",
+  "downPayment": "Down Payment",
+  "mortgageDeed": "Mortgage Deed",
   "titleDeed": "Title Deed (lagfart)",
   "introduction": {
     "welcome": "Welcome to \"vad kostar bostaden\". This page collects information for you who wants to buy a place to live in Sweden. It will help you understand the costs in form of fees and taxes that await you. The page is split into section. Each section contains information to help you understand that it is about and requires certain fields to be filled in. In the end you can choose to save the data for later. All calculation are cross checked with real life scenarios.",
@@ -53,33 +53,35 @@
     "introduction": "In this section you can see how the interest rate will influence the monthly costs. The rate is negotiated in dialog with you and your bank.",
     "summary": "The current interest rate is { interestPercent }%. You will need to pay { amountPerYear } kr per year in interest for your loan of { loan } kr."
   },
-  "expenses": {
-    "title": "Expenses",
-    "introduction": "Now the expensive part. Let us sum up the coming expenses. We group them in two parts: one off costs that come with the purchase (down payment, taxes) and monthly costs for amortization and intrest.",
+  "expensesOneOff": {
+    "title": "Expenses: One-off",
+    "introduction": "Let us sum up the coming non recurring expenses. We group them in two parts: down payment and taxes).",
     "downPayment": "Down payment is made in 2 steps. The first step is payed immidiately after you sign the contract finalizing the affair. This fee is set to { whenSigned }%. The second fee is payed when the estate is handed over to you and it is ready to move in. It is set to { whenAvailable }%. That totals to { total }%.",
     "taxes": "There are two taxes that have to be payed: mortgage deed (pantbrev) and title deed (lagfart). The title deed is payed within three months after you bought the estate. It usually is paid right together with the second down payment. It is payed to Lantmäteriet and registers you as the new owner. An additional fee is required of { titleDeedFee } kr to create new title deed. It is calculates as { titleDeedPercent }% of the total value of the purchase. If you buy a hous worth { price } kr then title deed is { titleDeed } kr. See section estate for information about mortgage deed.",
-    "card": {
-      "name": "Name",
-      "percentage": "Percentage",
-      "amount": "Amount (kr)",
+    "table": {
+      "header": {
+        "name": "Name",
+        "percentage": "Percentage",
+        "amount": "Amount (kr)"
+      },
       "downPayment": {
         "title": ""
       },
       "taxes": {
         "title": "Taxes"
-      },
-      "monthlyExpenses": {
-        "title": "Monthly expenses",
-        "introduction": "Let us summarize the yearly and monthly expences that await you. The expenses are calculated based on amortization and interest.",
-        "table": {
-          "interest": "Interest { interestPercent }% (kr)",
-          "amortization": "Amortization { amortizationPercent }% (kr)",
-          "sum": "Sum (kr)",
-          "forYear": "for a year",
-          "forMonth": "for a month",
-          "forMonthPerBorrower": "for a month per borrower"
-        }
       }
+    }
+  },
+  "expensesRecurring": {
+    "title": "Expenses: Recurring",
+    "introduction": "Let us have a look at recurring yearly and monthly expenses. We group them in two parts: interest and amortization.",
+    "table": {
+      "interest": "Interest { interestPercent }% (kr)",
+      "amortization": "Amortization { amortizationPercent }% (kr)",
+      "sum": "Sum (kr)",
+      "forYear": "for a year",
+      "forMonth": "for a month",
+      "forMonthPerBorrower": "for a month per borrower"
     }
   },
   "saveForLater": {

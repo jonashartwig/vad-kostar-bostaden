@@ -5,7 +5,8 @@
 	import Introduction from "./components/Introduction";
 	import Borrowers from "./components/Borrowers";
 	import Estate from "./components/Estate";
-	import Expenses from "./components/Expenses";
+	import ExpensesOneOff from "./components/ExpensesOneOff";
+	import ExpensesRecurring from "./components/ExpensesRecurring";
 	import Interest from "./components/Interest";
 	import SaveForLater from "./components/SaveForLater";
 	import * as language from "./modules/language";
@@ -65,8 +66,9 @@
 	<Introduction bind:state={state} />
 	<Borrowers bind:state={state} />
 	<Estate bind:state={state} />
+	<ExpensesOneOff bind:state={state} />
 	<Interest bind:state={state} />
-	<Expenses bind:state={state} />
+	<ExpensesRecurring bind:state={state} />
 	<SaveForLater bind:state={state} />
 </main>
 <footer class="page-footer font-small vkb-main-color">

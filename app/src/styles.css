@@ -123,3 +123,7 @@ button.selected {
 .row.collapse {
   margin-bottom: 1rem;
 }
+
+.card.no-border {
+  border: 0;
+}
