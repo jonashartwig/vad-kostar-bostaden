@@ -7,8 +7,8 @@
   "mortgageDeed": "Mortgage Deed",
   "titleDeed": "Title Deed (lagfart)",
   "introduction": {
-    "welcome": "Welcome to \"vad kostar bostaden\". This page collects information for you who wants to buy a place to live in Sweden. It will help you understand the costs in form of fees and taxes that await you. The page is split into section. Each section contains information to help you understand that it is about and requires certain fields to be filled in. In the end you can choose to save the data for later. All calculation are cross checked with real life scenarios.",
-    "dataPolicy": "We do not save any of the data you enter in the form below. We do not use any cookies or any other form of tracking either. We believe in that you own your data.",
+    "welcome": "Welcome to \"vad kostar bostaden\". This page provides information for those of you who want to buy a place to live in Sweden. It will help you understand the costs in form of fees and taxes that await you. The page is split into sections. Each section contains information that helps you understand a specific aspect and its required inputs. In the end you can choose to save the data for later. All calculations are cross verified with real life scenarios.",
+    "dataPolicy": "We do not save any of the data you enter in the form below. We do not use any cookies or any other form of tracking either. We believe in you owning your data.",
     "type": "Let us start. First we would like to know what you are looking for or. Alternatively you can choose to restore a previous saved file.",
     "appartment": "Appartment",
     "house": "House",
@@ -50,7 +50,7 @@
   },
   "interest": {
     "title": "Interest",
-    "introduction": "In this section you can see how the interest rate will influence the monthly costs. The rate is negotiated in dialog with you and your bank.",
+    "introduction": "In this section you can see how the interest rate will influence the monthly costs. The rate is negotiated between you and your bank.",
     "summary": "The current interest rate is { interestPercent }%. You will need to pay { amountPerYear } kr per year in interest for your loan of { loan } kr."
   },
   "expensesOneOff": {
