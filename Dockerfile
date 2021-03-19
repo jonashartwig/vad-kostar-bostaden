@@ -1,4 +1,4 @@
-FROM node:14-alpine3.11
+FROM node:15.12.0-alpine
 
 WORKDIR /app
 COPY app/ .
@@ -7,7 +7,7 @@ RUN npm ci --ignore-scripts && \
   npm run build && \
   npm run test
 
-FROM nginx:1.17.10-alpine
+FROM nginx:1.19.8-alpine
 
 COPY --from=0 /app/public/* /usr/share/nginx/html/
 
