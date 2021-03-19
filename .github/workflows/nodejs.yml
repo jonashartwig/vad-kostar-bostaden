@@ -18,14 +18,14 @@ jobs:
         repository: jonashartwig/vad-kostar-bostaden
         tags: latest,${{ github.sha }}
         push: true
-    - uses: deliverybot/helm@v1.5.0
-      with:
-        helm: helm3
-        release: vad-kostar-bostaden
-        namespace: jonas
-        chart: helm
-        values: |
-          image:
-            tag: ${{ github.sha }}
-      env:
+    #- uses: deliverybot/helm@v1.5.0
+    #  with:
+    #    helm: helm3
+    #    release: vad-kostar-bostaden
+    #    namespace: jonas
+    #    chart: helm
+    #    values: |
+    #      image:
+    #        tag: ${{ github.sha }}
+    #  env:
         KUBECONFIG_FILE: "${{ secrets.KUBECONFIG }}"
