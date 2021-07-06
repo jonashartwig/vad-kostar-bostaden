@@ -1,9 +1,11 @@
 {
   "title": "Wieviel kostet die Immobilie?",
-  "language": "Sprache",
   "showMore": "Mehr anzeigen",
   "showLess": "Weniger anzeigen",
   "footer": {
     "visitUs": "Besuch uns auf"
+  },
+  "languages": {
+    "title": "Sprachen"
   }
 }

@@ -9,33 +9,17 @@
 	import ExpensesRecurring from "./components/ExpensesRecurring";
 	import Interest from "./components/Interest";
 	import SaveForLater from "./components/SaveForLater";
+	import Languages from "./components/Languages";
 	import * as language from "./modules/language";
 	import { loadFromLocalStorage, loadFromUrl, canBeLoadedFromParam } from "./modules/save";
-	import en from "./translations/en.json"
-	import de from "./translations/de.json"
-	import sv from "./translations/sv.json"
-	import fi from "./translations/fi.json"
-
-	const browserLanguage = language.getBrowserLanguage(),
-		initialLanguage = language.getInitialLanguage(),
-		availableLanguages = Object.keys(language.languageToCountryMap);
+	
+	export let state = loadFromUrl() || loadFromLocalStorage() || new State();
 
 	init({
 	  fallbackLocale: language.fallBackLanguage,
-	  initialLocale: initialLanguage
+	  initialLocale: state.getLanguageOrDefault()
 	});
 
-	let currentLanguage = initialLanguage;
-	$: currentCountry = language.languageToCountryMap[currentLanguage].countryShort
-
-	locale.subscribe(val => currentLanguage = val);
-
-	addMessages("en", en);
-	addMessages("sv", sv);
-	addMessages("de", de);
-	addMessages("fi", fi);
-
-	export let state = loadFromUrl() || loadFromLocalStorage() || new State();
 	if(canBeLoadedFromParam()) {
 		window.history.replaceState({}, document.title, "/")
 	}
@@ -49,21 +33,12 @@
 					{ $_("title") }
 				</h1>
 			</div>
-			<div class="col-3 dropdown vkb-main-color">
-					<div class="nav-link dropdown-toggle pointer" id="language-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" >
-						<span class="flag-icon flag-icon-{currentCountry}"></span> { $_("language") }
-					</div>
-				<div class="dropdown-menu vkb-main-color" aria-labelledby="language-toggle">
-					{#each availableLanguages as availableLanguage}
-						<div class="dropdown-item vkb-main-color pointer" on:click={ () => locale.set(availableLanguage) }><span class="flag-icon flag-icon-{language.languageToCountryMap[availableLanguage].countryShort}"> </span>  { language.languageToCountryMap[availableLanguage].displayName }</div>
-					{/each}
-				</div>
-			</div>
 		</div>
 	</div>
 </header>
 <main>
 	<Introduction bind:state={state} />
+	<Languages bind:state={state} />
 	<Borrowers bind:state={state} />
 	<Estate bind:state={state} />
 	<ExpensesOneOff bind:state={state} />

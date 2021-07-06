@@ -7,6 +7,7 @@ import * as downPayment from "../modules/down_payment";
 import amortizationPercent from "../modules/amortization_percent";
 import amortizationPerYear, { amortizationPerMonth, amortizationPerMonthPerBorrower } from "../modules/amortization";
 import interestPerYear, { interestPerMonth, interestPerMonthPerBorrower } from "../modules/interest";
+import { getInitialLanguage } from "../modules/language";
 
 @Serializable()
 export default class State {
@@ -15,6 +16,7 @@ export default class State {
   @JsonProperty() pantbrev: number;
   @JsonProperty() interest: number;
   @JsonProperty() type: Type;
+  @JsonProperty() language: string; 
 
   constructor(borrowers: Array<Borrower> = [], price: number = 0, pantbrev: number = 0.02 * price, interest: number = 0.0133, type = Type.APPARTMENT) {
     this.borrowers = borrowers;
@@ -22,6 +24,16 @@ export default class State {
     this.pantbrev = pantbrev;
     this.type = type;
     this.interest = interest;
+  }
+
+  getLanguageOrDefault(): string {
+    return this.language || getInitialLanguage()
+  }
+
+  withLanguage(language: string): State {
+    this.language = language;
+
+    return this;
   }
 
   addBorrower(borrower: Borrower = new Borrower()): State {

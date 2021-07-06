@@ -120,6 +120,10 @@ button.selected {
   color: white;
 }
 
+span.selected {
+  border: #F68E5F dashed 2px;
+}
+
 .row.collapse {
   margin-bottom: 1rem;
 }

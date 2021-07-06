@@ -1,4 +1,6 @@
 {
   "title": "Kui palju on minu elukoht?",
-  "language": "Kieli"
+  "languages": {
+    "title": "Kieli"
+  }
 }
