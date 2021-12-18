@@ -1,49 +1,14 @@
 import { addMessages } from "svelte-i18n";
 
-// @ts-ignore
-if (typeof require.context === 'undefined') {
-  const fs = require('fs');
-  const path = require('path');
+import { load_translations } from "./load_translations";
 
-  // @ts-ignore
-  require.context = (base = '.', scanSubDirectories = false, regularExpression = /\.js$/) => {
-    const files = {};
-
-    function readDirectory(directory) {
-      fs.readdirSync(directory).forEach((file) => {
-        const fullPath = path.resolve(directory, file);
-
-        if (fs.statSync(fullPath).isDirectory()) {
-          if (scanSubDirectories) readDirectory(fullPath);
-
-          return;
-        }
-
-        if (!regularExpression.test(fullPath)) return;
-
-        files[fullPath] = true;
-      });
-    }
-
-    readDirectory(path.resolve(__dirname, base));
-
-    function Module(file) {
-      return require(file);
-    }
-
-    Module.keys = () => Object.keys(files);
-
-    return Module;
-  };
+function getFileNameOnly(filePath: string): string {
+  return filePath.split('/').pop().split('.').shift();
 }
 
-function getFileNameOnly(filePath) {
-    return filePath.split('/').pop().split('.').shift();
-}
-
-function loadJson (path: string): object {
+function parse_translations(): object {
   const json = {};
-  const requireContext = require.context('../translations', false, /\.json$/);
+  const requireContext = load_translations();
 
   requireContext.keys().forEach((key) => {
     const obj = requireContext(key);
@@ -56,7 +21,7 @@ function loadJson (path: string): object {
 }
 
 function addTranslations(): void {
-  const translations = loadJson("../translations");
+  const translations = parse_translations();
 
   for (const [key, value] of Object.entries(translations)) {
     addMessages(key, value);
@@ -79,7 +44,7 @@ export class LanguageConfiguration {
 }
 
 // the map of available languages
-function getLanguageToCountryMap(): Record<string, LanguageConfiguration> {
+export function getLanguageToCountryMap(): Record<string, LanguageConfiguration> {
   // add translations to the i18n framework
   addTranslations();
     

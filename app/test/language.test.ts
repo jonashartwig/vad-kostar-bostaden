@@ -1,6 +1,8 @@
 import { expect } from "chai";
 import { describe, it } from "mocha";
+import { stub } from "sinon";
 
+const dependencyModule = require("../src/modules/load_translations");
 import * as language from "../src/modules/language";
 
 describe("language", () => {
@@ -9,6 +11,46 @@ describe("language", () => {
     global["navigator"] = {
       language: "en-IN"
     };
+
+    // @ts-ignore
+    stub(dependencyModule, "load_translations").callsFake(() => {
+      // @ts-ignore
+      const fs = require('fs');
+      const path = require('path');
+    
+      // @ts-ignore
+      function requireContext(base = '.', scanSubDirectories = false, regularExpression = /\.js$/) {
+        const files = {};
+    
+        function readDirectory(directory) {
+          fs.readdirSync(directory).forEach(file => {
+            const fullPath = path.resolve(directory, file);
+    
+            if (fs.statSync(fullPath).isDirectory()) {
+              if (scanSubDirectories) readDirectory(fullPath);
+    
+              return;
+            }
+    
+            if (!regularExpression.test(fullPath)) return;
+    
+            files[fullPath] = true;
+          });
+        }
+    
+        readDirectory(path.resolve(__dirname, base));
+    
+        function Module(file) {
+          return require(file);
+        }
+    
+        Module.keys = () => Object.keys(files);
+    
+        return Module;
+      };
+
+      return requireContext("../src/translations", false, /\.json$/);
+    })
   });
 
   it("should load browser language", () => {

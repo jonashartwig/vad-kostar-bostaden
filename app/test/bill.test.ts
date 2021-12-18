@@ -2,7 +2,7 @@ import { expect, use } from "chai";
 import chaiExclude from "chai-exclude";
 import { describe, it } from "mocha";
 
-import Bill, { BILL_FREQUENCY } from "../src/dto/Bill";
+import Bill, { BILL_FREQUENCY } from "../src/dto/bill";
 
 describe("bill", () => {
   before(() => {

@@ -4,12 +4,13 @@
   import CollapsableSection from "./CollapsableSection.svelte";
 	import * as language from "../modules/language";
 
-  const availableLanguages = Object.keys(language.languageToCountryMap);
+  const languageToCountryMap = language.getLanguageToCountryMap()
+  const availableLanguages = Object.keys(languageToCountryMap);
 
   export let state;
 
 	$: currentLanguage = state.getLanguageOrDefault();
-	$: currentCountry = language.languageToCountryMap[currentLanguage].countryShort;
+	$: currentCountry = languageToCountryMap[currentLanguage].countryShort;
 
   function setLanguage(language) {
       state = state.withLanguage(language);
@@ -31,7 +32,7 @@
                 <span class:selected={availableLanguage == state.getLanguageOrDefault()}
                     on:click={() => setLanguage(availableLanguage)}
                     style="font-size: 50px; padding: 2px;"
-                    class="pointer flag-icon flag-icon-{language.languageToCountryMap[availableLanguage].countryShort}" />
+                    class="pointer flag-icon flag-icon-{languageToCountryMap[availableLanguage].countryShort}" />
             </div>
         {/each}
 				<div>

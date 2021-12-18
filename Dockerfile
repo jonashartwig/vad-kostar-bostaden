@@ -1,11 +1,10 @@
-FROM node:15.12.0-alpine
+FROM node:16.13.1-alpine
 
 WORKDIR /app
 COPY app/ .
 
 RUN npm ci --ignore-scripts && \
-  npm run build && \
-  npm run test
+  npm run build
 
 FROM nginx:1.19.8-alpine
 
