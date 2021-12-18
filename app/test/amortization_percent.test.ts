@@ -1,5 +1,7 @@
-import { expect } from 'chai';
-import amortizationPercent from '../src/modules/amortization_percent';
+import { expect } from "chai";
+import { describe, it } from "mocha";
+
+import amortizationPercent from "../src/modules/amortization_percent";
 
 describe("amortization_percent", () => {
   it("should calculte right with 50% payed", () => {

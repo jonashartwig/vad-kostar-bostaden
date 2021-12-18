@@ -3,6 +3,7 @@
 	import "./styles.css";
 	import State from "./dto/state";
 	import Introduction from "./components/Introduction";
+	import Bills from "./components/Bills";
 	import Borrowers from "./components/Borrowers";
 	import Estate from "./components/Estate";
 	import ExpensesOneOff from "./components/ExpensesOneOff";
@@ -42,6 +43,7 @@
 	<Borrowers bind:state={state} />
 	<Estate bind:state={state} />
 	<ExpensesOneOff bind:state={state} />
+	<Bills bind:state={state} />
 	<Interest bind:state={state} />
 	<ExpensesRecurring bind:state={state} />
 	<SaveForLater bind:state={state} />

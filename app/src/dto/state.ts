@@ -1,5 +1,6 @@
 import { JsonProperty, Serializable, deserialize as deserializeAsJson, serialize as serializeAsJson } from "typescript-json-serializer";
 
+import Bill from "./bill";
 import Borrower from "./borrower";
 import { Type } from "./type";
 import debtRatio from "../modules/debt_ratio";
@@ -11,6 +12,7 @@ import { getInitialLanguage } from "../modules/language";
 
 @Serializable()
 export default class State {
+  @JsonProperty({ type: Bill }) bills: Array<Bill>;
   @JsonProperty({ type: Borrower }) borrowers: Array<Borrower>;
   @JsonProperty() price: number;
   @JsonProperty() pantbrev: number;
@@ -18,7 +20,8 @@ export default class State {
   @JsonProperty() type: Type;
   @JsonProperty() language: string; 
 
-  constructor(borrowers: Array<Borrower> = [], price: number = 0, pantbrev: number = 0.02 * price, interest: number = 0.0133, type = Type.APPARTMENT) {
+  constructor(bills: Array<Bill> = [], borrowers: Array<Borrower> = [], price: number = 0, pantbrev: number = 0.02 * price, interest: number = 0.0133, type = Type.APPARTMENT) {
+    this.bills = bills;
     this.borrowers = borrowers;
     this.price = price;
     this.pantbrev = pantbrev;
@@ -32,6 +35,18 @@ export default class State {
 
   withLanguage(language: string): State {
     this.language = language;
+
+    return this;
+  }
+
+  addBill(bill: Bill = new Bill()): State {
+    this.bills = [...this.bills, bill];
+
+    return this;
+  }
+
+  removeBill(id: string): State {
+    this.bills = this.bills.filter(bill => bill.getId() != id)
 
     return this;
   }

@@ -1,5 +1,7 @@
-import { expect } from 'chai';
-import loanToValue from '../src/modules/loan_to_value';
+import { expect } from "chai";
+import { describe, it } from "mocha";
+
+import loanToValue from "../src/modules/loan_to_value";
 
 describe("loanToValue", () => {
   it("should calculate ratio", () => {

@@ -1,5 +1,7 @@
-import { expect } from 'chai';
-import titleDeed from '../src/modules/title_deed';
+import { expect } from "chai";
+import { describe, it } from "mocha";
+
+import titleDeed from "../src/modules/title_deed";
 
 describe("lagfart", () => {
   it("should calculte right for my house", () => {

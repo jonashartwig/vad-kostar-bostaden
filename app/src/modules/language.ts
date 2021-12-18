@@ -1,15 +1,49 @@
 import { addMessages } from "svelte-i18n";
 
-export const fallBackLanguage = "gb";
+// @ts-ignore
+if (typeof require.context === 'undefined') {
+  const fs = require('fs');
+  const path = require('path');
 
-function getFileNameOnly(filePath) {
-  return filePath.split('/').pop().split('.').shift();
+  // @ts-ignore
+  require.context = (base = '.', scanSubDirectories = false, regularExpression = /\.js$/) => {
+    const files = {};
+
+    function readDirectory(directory) {
+      fs.readdirSync(directory).forEach((file) => {
+        const fullPath = path.resolve(directory, file);
+
+        if (fs.statSync(fullPath).isDirectory()) {
+          if (scanSubDirectories) readDirectory(fullPath);
+
+          return;
+        }
+
+        if (!regularExpression.test(fullPath)) return;
+
+        files[fullPath] = true;
+      });
+    }
+
+    readDirectory(path.resolve(__dirname, base));
+
+    function Module(file) {
+      return require(file);
+    }
+
+    Module.keys = () => Object.keys(files);
+
+    return Module;
+  };
 }
 
-// pre-load all the languages, put them into a dictionay by file name
-function loadJson() {
-  const requireContext = require.context('../translations', false, /\.json$/);
+function getFileNameOnly(filePath) {
+    return filePath.split('/').pop().split('.').shift();
+}
+
+function loadJson (path: string): object {
   const json = {};
+  const requireContext = require.context('../translations', false, /\.json$/);
 
   requireContext.keys().forEach((key) => {
     const obj = requireContext(key);
@@ -21,9 +55,15 @@ function loadJson() {
   return json;
 }
 
-const translations = loadJson();
+function addTranslations(): void {
+  const translations = loadJson("../translations");
 
-class LanguageConfiguration {
+  for (const [key, value] of Object.entries(translations)) {
+    addMessages(key, value);
+  }
+} 
+
+export class LanguageConfiguration {
   // used to  match browser languages to country
   regex: RegExp
   // the native name of that country
@@ -35,19 +75,23 @@ class LanguageConfiguration {
     this.regex = regex
     this.displayName = displayName
     this.countryShort = countryShort
-
-    // add translations to the i18n framework
-    addMessages(countryShort, translations[countryShort]);
   }
 }
 
 // the map of available languages
-export const languageToCountryMap: Record<string, LanguageConfiguration> = {
-  [fallBackLanguage]: new LanguageConfiguration(/en(-[A-Z]{2})?/, "English", "gb"),
-  "se": new LanguageConfiguration(/sv(-[A-Z]{2})?/, "Svenska", "se"),
-  //"de": new LanguageConfiguration(/de(-[A-Z]{2})?/, "Deutsch", "de"),
-  //"fi": new LanguageConfiguration(/fi(-[A-Z]{2})?/, "Suomalainen", "fi")
+function getLanguageToCountryMap(): Record<string, LanguageConfiguration> {
+  // add translations to the i18n framework
+  addTranslations();
+    
+  return {
+    [fallBackLanguage]: new LanguageConfiguration(/en(-[A-Z]{2})?/, "English", "gb"),
+    //"se": new LanguageConfiguration(/sv(-[A-Z]{2})?/, "Svenska", "se"),
+    //"de": new LanguageConfiguration(/de(-[A-Z]{2})?/, "Deutsch", "de"),
+    //"fi": new LanguageConfiguration(/fi(-[A-Z]{2})?/, "Suomalainen", "fi")
+  };
 }
+
+export const fallBackLanguage = "gb";
 
 export function getBrowserLanguage(): string {
   return (navigator.languages && navigator.languages[0]) || navigator.language;
@@ -58,8 +102,10 @@ export function getInitialLanguage(): string {
 }
 
 export function getSupportedLanguageDefault(language: string): string {
-  for(let key in languageToCountryMap) {
-    if(language.match(languageToCountryMap[key].regex)) {
+  const translations = getLanguageToCountryMap()
+  
+  for(let key in translations) {
+    if(language.match(translations[key].regex)) {
       return key;
     }
   }

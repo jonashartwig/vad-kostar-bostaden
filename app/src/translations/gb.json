@@ -17,6 +17,21 @@
     "house": "House",
     "motivation": "Why do we do this? The year is 2020. We found ourselves creating another cumbersome excel sheet to calculate coming expences. Turns out so do a lot of other. Some use even a calculator. Seems unneccessary and error prone to us. So we created this page for you out there so you do not have to do costly mistakes and invest unnecessary time."
   },
+  "bills": {
+    "title": "Bills",
+    "introduction": "We all have to pay bills. This section lets you enter information about the bills you would expect or already have.",
+    "table": {
+      "name": "Name",
+      "amount": "Amount",
+      "frequency": "Frequency",
+      "create": "Add bill",
+      "remove": "Remove"
+    },
+    "summary": "This is the summary",
+    "monthly": "Monthly",
+    "quaterly": "Quaterly",
+    "yearly": "Yearly"
+  },
   "borrowers": {
     "title": "Borrowers",
     "introduction": "Help us understand your financial situation. Please enter your salary in kr/month before tax. The salary is required for the debt ratio (skuldkvot). Debt ratio is one of the factors that determine your amortization rate. Start by adding individuals who will apply for the loan. Name and cash are optional.",
@@ -26,7 +41,7 @@
       "name": "Name",
       "salaryPerMonth": "Salary (kr/month)",
       "cash": "Cash (kr)",
-      "create": "Add",
+      "create": "Add borrower",
       "remove": "Remove"
     },
     "summary": "The combined <u>total salary</u> per year is: <b>{ combinedSalary } kr</b>. The resulting <u>debt ratio</u> is therefore <b>{ debtRatio } kr </b>."

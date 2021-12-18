@@ -1,11 +1,12 @@
 import { expect, use } from "chai";
-import chaiExclude from 'chai-exclude';
+import chaiExclude from "chai-exclude";
+import { describe, it } from "mocha";
 
 import Borrower from "../src/dto/borrower";
 import State from "../src/dto/state";
 
 function getState(): State {
-  return new State([new Borrower("Jonas", 59000, 0), new Borrower("Emelie", 46700, 0)], 5385000, 1450400, 0.0133);
+  return new State([], [new Borrower("Jonas", 59000, 0), new Borrower("Emelie", 46700, 0)], 5385000, 1450400, 0.0133);
 }
 
 describe("state", () => {
@@ -15,6 +16,7 @@ describe("state", () => {
 
   it("should serialize as object", () => {
     expect(getState().serialize()).to.deep.equal({
+      "bills": [],
       "borrowers":[
         {
           "salary": 59000,
@@ -34,11 +36,12 @@ describe("state", () => {
   });
 
   it("should serialize as string", () => {
-    expect(getState().serializeToString()).to.deep.equal("{\"borrowers\":[{\"salary\":59000,\"name\":\"Jonas\",\"downPayment\":0},{\"salary\":46700,\"name\":\"Emelie\",\"downPayment\":0}],\"price\":5385000,\"pantbrev\":1450400,\"interest\":0.0133,\"type\":1}");
+    expect(getState().serializeToString()).to.deep.equal("{\"bills\":[],\"borrowers\":[{\"salary\":59000,\"name\":\"Jonas\",\"downPayment\":0},{\"salary\":46700,\"name\":\"Emelie\",\"downPayment\":0}],\"price\":5385000,\"pantbrev\":1450400,\"interest\":0.0133,\"type\":1}");
   });
 
   it("should deserialize from object", () => {
     expect(State.deserialize({
+      "bills": [],
       "borrowers":[
         {
           "salary": 59000,
@@ -57,7 +60,7 @@ describe("state", () => {
   });
 
   it("should serialize as string", () => {
-    expect(State.deserializeFromString("{\"borrowers\":[{\"salary\":59000,\"name\":\"Jonas\",\"downPayment\":0},{\"salary\":46700,\"name\":\"Emelie\",\"downPayment\":0}],\"price\":5385000,\"pantbrev\":1450400,\"interest\":0.0133}")).excludingEvery("id").to.deep.equal(getState());
+    expect(State.deserializeFromString("{\"bills\":[],\"borrowers\":[{\"salary\":59000,\"name\":\"Jonas\",\"downPayment\":0},{\"salary\":46700,\"name\":\"Emelie\",\"downPayment\":0}],\"price\":5385000,\"pantbrev\":1450400,\"interest\":0.0133}")).excludingEvery("id").to.deep.equal(getState());
   });
 
   it("should add empty borrower", () => {
@@ -91,10 +94,10 @@ describe("state", () => {
   });
 
   it("should calculate loan with minimum down payment", () => {
-    expect(new State([], 100).getLoan()).to.equal(85);
+    expect(new State([], [], 100).getLoan()).to.equal(85);
   });
 
   it("should calculate loan with given down payment", () => {
-    expect(new State([ new Borrower("", 0, 10) ], 100).getLoan()).to.equal(90);
+    expect(new State([], [ new Borrower("", 0, 10) ], 100).getLoan()).to.equal(90);
   });
 });

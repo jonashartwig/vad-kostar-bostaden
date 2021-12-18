@@ -8,6 +8,7 @@
 
 	export let state;
 </script>
+
 <CollapsableSection let:minimized>
   <span slot="title">
     { $_("borrowers.title") }
