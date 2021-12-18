@@ -24,8 +24,11 @@ function loadJson() {
 const translations = loadJson();
 
 class LanguageConfiguration {
+  // used to  match browser languages to country
   regex: RegExp
+  // the native name of that country
   displayName: string
+  // the two letter abbreviation of that country
   countryShort: string
 
   constructor(regex: RegExp, displayName: string, countryShort: string) {
