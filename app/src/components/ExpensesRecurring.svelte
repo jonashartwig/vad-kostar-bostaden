@@ -62,9 +62,9 @@
               </tr>
               <tr>
                 <td>{ $_("expensesRecurring.table.forMonthPerBorrower") }</td>
-                <td>{ $number(state.getAmortizationPerMonthPerBorrower()) }</td>
-                <td>{ $number(state.getInterestPerMonthPerBorrower()) }</td>
-                <td><b>{ $number(state.getAmortizationPerMonthPerBorrower() + state.getInterestPerMonthPerBorrower()) }</b></td>
+                <td>{ $number(state.getAmortizationPerMonthPerBorrower() || 0) }</td>
+                <td>{ $number(state.getInterestPerMonthPerBorrower() || 0) }</td>
+                <td><b>{ $number((state.getAmortizationPerMonthPerBorrower() + state.getInterestPerMonthPerBorrower()) || 0) }</b></td>
               </tr>
             </tbody>
           </table>
