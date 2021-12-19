@@ -9,12 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: ./.github/workflows/workflow.yaml@v1
-        secrets:
-          ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          DOCKER_USER_NAME: ${{ secrets.DOCKER_USER_NAME }}
-          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-        with:
-          bucketName: vad-kostar-bostaden-test
+    uses: ./.github/workflows/workflow.yaml@v1
+    secrets:
+      ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DOCKER_USER_NAME: ${{ secrets.DOCKER_USER_NAME }}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+    with:
+      bucketName: vad-kostar-bostaden-test
