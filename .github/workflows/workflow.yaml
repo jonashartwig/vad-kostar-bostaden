@@ -31,6 +31,7 @@ jobs:
           id=$(docker create jonashartwig/vad-kostar-bostaden)
           docker cp $id:/usr/share/nginx/html public
           docker rm -v $id
+          ls -lar public
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
