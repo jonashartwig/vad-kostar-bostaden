@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     uses: jonashartwig/vad-kostar-bostaden/.github/workflows/workflow.yaml@master
     secrets:
       ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
