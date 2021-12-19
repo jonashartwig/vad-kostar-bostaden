@@ -2,6 +2,7 @@ import { expect } from "chai";
 import { describe, it } from "mocha";
 import { stub } from "sinon";
 
+// @ts-ignore
 const dependencyModule = require("../src/modules/load_translations");
 import * as language from "../src/modules/language";
 
@@ -16,6 +17,7 @@ describe("language", () => {
     stub(dependencyModule, "load_translations").callsFake(() => {
       // @ts-ignore
       const fs = require('fs');
+      // @ts-ignore
       const path = require('path');
     
       // @ts-ignore
@@ -38,9 +40,11 @@ describe("language", () => {
           });
         }
     
+        // @ts-ignore
         readDirectory(path.resolve(__dirname, base));
     
         function Module(file) {
+          // @ts-ignore
           return require(file);
         }
     

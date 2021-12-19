@@ -43,6 +43,9 @@
                   }
                 </th>
                 <th scope="col">
+                  { $_("expensesRecurring.table.bills") }
+                </th>
+                <th scope="col">
                   { $_("expensesRecurring.table.sum") }
                 </th>
               </tr>
@@ -52,19 +55,22 @@
                 <td>{ $_("expensesRecurring.table.forYear") }</td>
                 <td>{ $number(state.getAmortizationPerYear()) }</td>
                 <td>{ $number(state.getInterestPerYear()) }</td>
-                <td>{ $number(state.getAmortizationPerYear() + state.getInterestPerYear()) }</td>
+                <td>{ $number(state.getYearlyBillAmount()) }</td>
+                <td>{ $number(state.getAmortizationPerYear() + state.getInterestPerYear() + state.getYearlyBillAmount()) }</td>
               </tr>
               <tr>
                 <td>{ $_("expensesRecurring.table.forMonth") }</td>
                 <td>{ $number(state.getAmortizationPerMonth()) }</td>
                 <td>{ $number(state.getInterestPerMonth()) }</td>
-                <td>{ $number(state.getAmortizationPerMonth() + state.getInterestPerMonth()) }</td>
+                <td>{ $number(state.getMonthlyBillAmount()) }</td>
+                <td>{ $number(state.getAmortizationPerMonth() + state.getInterestPerMonth() + state.getMonthlyBillAmount()) }</td>
               </tr>
               <tr>
                 <td>{ $_("expensesRecurring.table.forMonthPerBorrower") }</td>
                 <td>{ $number(state.getAmortizationPerMonthPerBorrower() || 0) }</td>
                 <td>{ $number(state.getInterestPerMonthPerBorrower() || 0) }</td>
-                <td><b>{ $number((state.getAmortizationPerMonthPerBorrower() + state.getInterestPerMonthPerBorrower()) || 0) }</b></td>
+                <td>{ $number(state.getMonthlyBillAmountByBorrower()) }</td>
+                <td><b>{ $number((state.getAmortizationPerMonthPerBorrower() + state.getInterestPerMonthPerBorrower() + state.getMonthlyBillAmountByBorrower()) || 0) }</b></td>
               </tr>
             </tbody>
           </table>

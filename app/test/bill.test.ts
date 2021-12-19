@@ -20,4 +20,16 @@ describe("bill", () => {
   it("should calculate correct yearly amount by quaterly bill", () => {
     expect(new Bill("name", 100, BILL_FREQUENCY.QUATERLY).getAmountPerYear()).to.equal(400)
   })
+
+  it("should calculate correct monthly amount by yearly bill", () => {
+    expect(new Bill("name", 120, BILL_FREQUENCY.YEARLY).getAmountPerMonth()).to.equal(10)
+  })
+
+  it("should calculate correct monthly amount by monthly bill", () => {
+    expect(new Bill("name", 100, BILL_FREQUENCY.MONTHLY).getAmountPerMonth()).to.equal(100)
+  })
+
+  it("should calculate correct monthly amount by quaterly bill", () => {
+    expect(new Bill("name", 400, BILL_FREQUENCY.QUATERLY).getAmountPerMonth()).to.equal(100)
+  })
 });

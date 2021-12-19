@@ -79,7 +79,11 @@
 			<p>
         { @html
           $_({
-            id: "bills.summary"
+            id: "bills.summary",
+            values: {
+              amountToPayByYear: state.getYearlyBillAmount(),
+              amountToPayByMomth: state.getMonthlyBillAmount()
+            }
           })
         }
 			</p>

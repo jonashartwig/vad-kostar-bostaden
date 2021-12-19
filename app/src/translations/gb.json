@@ -27,7 +27,7 @@
       "create": "Add bill",
       "remove": "Remove"
     },
-    "summary": "This is the summary",
+    "summary": "The total amount of all bills summed up by <u>year</u> totals to <b>{ amountToPayByYear } kr</b>. Summed up by <u>month</u> totals to <b>{ amountToPayByMomth } kr</b>.",
     "monthly": "Monthly",
     "quaterly": "Quaterly",
     "yearly": "Yearly"
@@ -97,6 +97,7 @@
       "interest": "Interest { interestPercent }% (kr)",
       "amortization": "Amortization { amortizationPercent }% (kr)",
       "sum": "Sum (kr)",
+      "bills": "Bills (kr)",
       "forYear": "for a year",
       "forMonth": "for a month",
       "forMonthPerBorrower": "for a month per borrower"

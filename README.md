@@ -4,7 +4,7 @@ Information about pantbrev and lagart can be obtained here: https://www.ekonomif
 Apply for lånelöfte and compare banks: consector.se
 
 ## Translations
-Adding translations is done in two steps. First add a json file with country name into app/src/translations. Naming of those files must be the 2 letter abbreviation (e.g. gb for Great Britain). Those abbreviations are matched agains symbols from [flag-icons](https://github.com/lipis/flag-icons). The second step is to change the [languages](app/src/modules/language.ts) module. In that module update the object `languageToCountryMap`. Use the two letter country abbreviation as key and add a new object of `LanguageConfiguration`.
+Adding translations is done in two steps. First add a json file with country name into app/src/translations. Naming of those files must be the 2 letter abbreviation (e.g. gb for Great Britain). Those abbreviations are matched agains symbols from [flag-icons](https://github.com/lipis/flag-icons). The second step is to change the [languages](app/src/modules/language.ts) module. In that module update the function `getLanguageToCountryMap`. Use the two letter country abbreviation as key and add a new object of `LanguageConfiguration`.
 
 ## How to develop this locally?
 Starting up a web page locally is just one command away: `npm run dev` (assuming you have nom and nodejs installed). That launches a web server with HMR and is available at port 8080.

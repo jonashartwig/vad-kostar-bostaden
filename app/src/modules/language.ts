@@ -43,17 +43,27 @@ export class LanguageConfiguration {
   }
 }
 
+let languages_cache: Record<string, LanguageConfiguration> = undefined;
 // the map of available languages
+// lets only load this once
 export function getLanguageToCountryMap(): Record<string, LanguageConfiguration> {
-  // add translations to the i18n framework
-  addTranslations();
-    
-  return {
-    [fallBackLanguage]: new LanguageConfiguration(/en(-[A-Z]{2})?/, "English", "gb"),
-    //"se": new LanguageConfiguration(/sv(-[A-Z]{2})?/, "Svenska", "se"),
-    //"de": new LanguageConfiguration(/de(-[A-Z]{2})?/, "Deutsch", "de"),
-    //"fi": new LanguageConfiguration(/fi(-[A-Z]{2})?/, "Suomalainen", "fi")
-  };
+  if(languages_cache) {
+    return languages_cache;
+  } else {
+    // add translations to the i18n framework
+    addTranslations();
+      
+    const languages = {
+      [fallBackLanguage]: new LanguageConfiguration(/en(-[A-Z]{2})?/, "English", "gb"),
+      //"se": new LanguageConfiguration(/sv(-[A-Z]{2})?/, "Svenska", "se"),
+      //"de": new LanguageConfiguration(/de(-[A-Z]{2})?/, "Deutsch", "de"),
+      //"fi": new LanguageConfiguration(/fi(-[A-Z]{2})?/, "Suomalainen", "fi")
+    };
+
+    languages_cache = languages
+
+    return languages;
+  }
 }
 
 export const fallBackLanguage = "gb";

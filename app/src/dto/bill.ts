@@ -36,4 +36,16 @@ export default class Bill {
 
     return this.amount * 12;
   }
+
+  getAmountPerMonth(): number {
+    if(this.frequency == BILL_FREQUENCY.YEARLY) {
+      return this.amount / 12;
+    }
+
+    if(this.frequency == BILL_FREQUENCY.QUATERLY) {
+      return this.amount / 4;
+    }
+
+    return this.amount;
+  }
 }

@@ -127,6 +127,18 @@ export default class State {
     return !this.isHouse();
   }
 
+  getYearlyBillAmount(): number {
+    return this.bills.map(bill => bill.getAmountPerYear()).reduce((accumulator, value) => accumulator + (value || 0), 0);
+  }
+
+  getMonthlyBillAmount(): number {
+    return this.bills.map(bill => bill.getAmountPerMonth()).reduce((accumulator, value) => accumulator + (value || 0), 0);
+  }
+
+  getMonthlyBillAmountByBorrower(): number {
+    return (this.getMonthlyBillAmount() / this.borrowers.length) || 0;
+  }
+
   serializeToBase64String(): string {
     return State.serializeToBase64String(this);
   }
