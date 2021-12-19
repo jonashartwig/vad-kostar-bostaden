@@ -1,5 +1,8 @@
 name: Docker node build
 
+on:
+  workflow_dispatch:
+
 jobs:
   build:
     uses: jonashartwig/vad-kostar-bostaden/.github/workflows/workflow.yaml@master
