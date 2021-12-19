@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    uses: jonashartwig/vad-kostar-bostaden/.github/workflows/workflow.yaml@v1
+    uses: ${GITHUB_REPOSITORY}/.github/workflows/workflow.yaml@${GITHUB_REF##*/}
     secrets:
       ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
