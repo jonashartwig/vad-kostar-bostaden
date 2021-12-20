@@ -15,4 +15,5 @@ jobs:
       DOCKER_USER_NAME: ${{ secrets.DOCKER_USER_NAME }}
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
     with:
+      appName: vad-kostar-bostaden
       bucketName: vad-kostar-bostaden-test

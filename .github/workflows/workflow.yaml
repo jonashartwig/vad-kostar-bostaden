@@ -1,8 +1,11 @@
 on:
   workflow_call:
     inputs:
-      bucketName:
+      appName:
         required: true
+        type: string
+      bucketName:
+        required: false
         type: string
     secrets:
       DOCKER_USER_NAME:
@@ -23,12 +26,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USER_NAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
-          repository: jonashartwig/vad-kostar-bostaden
+          repository: jonashartwig/${{ inputs.appName }}
           tags: latest,${{ github.sha }}
           push: true
       - name: Copy files from image to local
         run: |
-          id=$(docker create jonashartwig/vad-kostar-bostaden)
+          id=$(docker create jonashartwig/${{ inputs.appName }})
           docker cp $id:/usr/share/nginx/html public
           docker rm -v $id
       - name: Configure AWS credentials
@@ -39,7 +42,7 @@ jobs:
           aws-region: eu-north-1
       - name: Copy files to the website with the AWS CLI
         run: |
-          aws s3 sync public s3://${{ inputs.bucketName }}
+          aws s3 sync public s3://${{ inputs.bucketName || inputs.appName }}
       #- uses: deliverybot/helm@v1.5.0
       #  with:
       #    helm: helm3
