@@ -5,6 +5,8 @@
   "downPayment": "Down Payment",
   "mortgageDeed": "Mortgage Deed",
   "titleDeed": "Title Deed (lagfart)",
+  "success": "That worked just fine.",
+  "failure": "Something went wrong.",
   "languages": {
     "title": "Languages",
     "introduction": "Maybe you like to choose a different language than the one we chose for you? Select any of the ones listed below."

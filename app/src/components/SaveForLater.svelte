@@ -9,7 +9,7 @@
   export let state;
 
   function saveWithMessage(callback) {
-    withCallback(callback);
+    withCallback(state.getLanguageOrDefault(), callback);
   }
 
   function openInTab(event) {
