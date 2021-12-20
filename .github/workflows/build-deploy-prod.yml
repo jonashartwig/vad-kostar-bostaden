@@ -1,4 +1,4 @@
-name: Docker node build
+name: "prod: Build and deploy"
 
 on:
   workflow_dispatch:
