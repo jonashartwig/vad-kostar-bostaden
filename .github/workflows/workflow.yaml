@@ -23,29 +23,29 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: docker/login-action@v1
-        if: ${{ github.actor != "dependabot[bot]" }}
+        if: ${{ github.actor != 'dependabot[bot]' }}
         with:
           username: ${{ secrets.DOCKER_USER_NAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
       - uses: docker/build-push-action@v2.9.0
         with:
           tags: jonashartwig/${{ inputs.appName }}:latest,jonashartwig/${{ inputs.appName }}:${{ github.sha }}
-          push: ${{ github.actor != "dependabot[bot]" }}
+          push: ${{ github.actor != 'dependabot[bot]' }}
       - name: Copy files from image to local
-        if: ${{ github.actor != "dependabot[bot]" }}
+        if: ${{ github.actor != 'dependabot[bot]' }}
         run: |
           id=$(docker create jonashartwig/${{ inputs.appName }})
           docker cp $id:/usr/share/nginx/html public
           docker rm -v $id
       - name: Configure AWS credentials
-        if: ${{ github.actor != "dependabot[bot]" }}
+        if: ${{ github.actor != 'dependabot[bot]' }}
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.SECRET_KEY }}
           aws-region: eu-north-1
       - name: Copy files to the website with the AWS CLI
-        if: ${{ github.actor != "dependabot[bot]" }}
+        if: ${{ github.actor != 'dependabot[bot]' }}
         run: |
           aws s3 sync public s3://${{ inputs.bucketName || inputs.appName }}
       #- uses: deliverybot/helm@v1.5.0
