@@ -31,7 +31,7 @@
     },
     "summary": "The total amount of all bills summed up by <u>year</u> totals to <b>{ amountToPayByYear } kr</b>. Summed up by <u>month</u> totals to <b>{ amountToPayByMomth } kr</b>.",
     "monthly": "Monthly",
-    "quaterly": "Quaterly",
+    "quaterly": "Quarterly",
     "yearly": "Yearly"
   },
   "borrowers": {
