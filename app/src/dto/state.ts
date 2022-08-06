@@ -9,6 +9,7 @@ import amortizationPercent from "../modules/amortization_percent";
 import amortizationPerYear, { amortizationPerMonth, amortizationPerMonthPerBorrower } from "../modules/amortization";
 import interestPerYear, { interestPerMonth, interestPerMonthPerBorrower } from "../modules/interest";
 import { getInitialLanguage } from "../modules/language";
+import { error as toastr } from "../modules/toastr";
 
 @Serializable()
 export default class State {
@@ -30,7 +31,7 @@ export default class State {
   }
 
   getLanguageOrDefault(): string {
-    return this.language || getInitialLanguage()
+    return this.language || getInitialLanguage();
   }
 
   withLanguage(language: string): State {
@@ -58,7 +59,7 @@ export default class State {
   }
 
   removeBorrower(id: string): State {
-    this.borrowers = this.borrowers.filter(borrower => borrower.getId() != id)
+    this.borrowers = this.borrowers.filter(borrower => borrower.getId() != id);
 
     return this;
   }
@@ -76,39 +77,39 @@ export default class State {
   }
 
   getDebtRatio(): number {
-    return debtRatio(this.getCombinedSalary())
+    return debtRatio(this.getCombinedSalary());
   }
 
   getLoan(): number {
-    return this.price - this.getCombinedDownPaymentOrMinimum(this.price)
+    return this.price - this.getCombinedDownPaymentOrMinimum(this.price);
   }
 
   getAmortizationRate(): number {
-    return amortizationPercent(this.price, this.getLoan(), this.getCombinedSalary())
+    return amortizationPercent(this.price, this.getLoan(), this.getCombinedSalary());
   }
 
   getAmortizationPerYear(): number {
-    return amortizationPerYear(this.price, this.getLoan(), this.getCombinedSalary())
+    return amortizationPerYear(this.price, this.getLoan(), this.getCombinedSalary());
   }
 
   getAmortizationPerMonth(): number {
-    return amortizationPerMonth(this.price, this.getLoan(), this.getCombinedSalary())
+    return amortizationPerMonth(this.price, this.getLoan(), this.getCombinedSalary());
   }
 
   getAmortizationPerMonthPerBorrower(): number {
-    return amortizationPerMonthPerBorrower(this.price, this.getLoan(), this.getCombinedSalary(), this.borrowers.length)
+    return amortizationPerMonthPerBorrower(this.price, this.getLoan(), this.getCombinedSalary(), this.borrowers.length);
   }
 
   getInterestPerYear(): number {
-    return interestPerYear(this.interest, this.getLoan())
+    return interestPerYear(this.interest, this.getLoan());
   }
 
   getInterestPerMonth(): number {
-    return interestPerMonth(this.interest, this.getLoan())
+    return interestPerMonth(this.interest, this.getLoan());
   }
 
   getInterestPerMonthPerBorrower(): number {
-    return interestPerMonthPerBorrower(this.interest, this.getLoan(), this.borrowers.length)
+    return interestPerMonthPerBorrower(this.interest, this.getLoan(), this.borrowers.length);
   }
 
   serialize(): object {
@@ -156,7 +157,15 @@ export default class State {
   }
 
   static deserializeFromBase64String(base64String: string): State {
-    return State.deserializeFromString(atob(base64String));
+    try {
+      return State.deserializeFromString(atob(base64String));
+    } catch(error) {
+      console.log(error);
+      
+      toastr(getInitialLanguage(), "stateParsefailure");
+
+      return new State();
+    }
   }
 
   static deserializeFromString(json: string): State {

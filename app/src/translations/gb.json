@@ -7,6 +7,7 @@
   "titleDeed": "Title Deed (lagfart)",
   "success": "That worked just fine.",
   "failure": "Something went wrong.",
+  "stateParsefailure": "That did not work. Make sure you got the complete URL.",
   "languages": {
     "title": "Languages",
     "introduction": "Maybe you like to choose a different language than the one we chose for you? Select any of the ones listed below."

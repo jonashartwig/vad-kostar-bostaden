@@ -2,25 +2,26 @@
 	import { _ } from "svelte-i18n";
 
 	import { loadFromFile } from "../modules/save";
-  import toastr from "../modules/toastr";
-  import { Type } from "../dto/type";
-  import CollapsableSection from "./CollapsableSection.svelte";
+	import toastr from "../modules/toastr";
+	import { Type } from "../dto/type";
+	import CollapsableSection from "./CollapsableSection.svelte";
 
-  export let state;
+	export let state;
 
-  $: isHouse = state.isHouse()
-  $: isAppartment = state.isAppartment()
+	$: isHouse = state.isHouse()
+	$: isAppartment = state.isAppartment()
 
-  function asHouse() {
-    state.type = Type.HOUSE
-  }
+	function asHouse() {
+		state.type = Type.HOUSE
+	}
 
-  function asAppartment() {
-    state.type = Type.APPARTMENT
-  }
+	function asAppartment() {
+		state.type = Type.APPARTMENT
+	}
 
 	function loadFile(event) {
 		toastr(
+			state.getLanguageOrDefault(),
 			loadFromFile(event.target.files)
 				.then(loadedState => state = loadedState)
 		)

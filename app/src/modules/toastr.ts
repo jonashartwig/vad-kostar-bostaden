@@ -1,7 +1,7 @@
 import toastr from "toastr";
 
-import {dictionary} from 'svelte-i18n';
-import {get} from 'svelte/store';
+import { dictionary } from 'svelte-i18n';
+import { get } from 'svelte/store';
 
 export function withCallback(language: string, callback: Function): void {
   withPromise(
@@ -23,8 +23,16 @@ export function withPromise(language: string, p: Promise<any>): void {
   }
 
   p
-    .then(() => toastr.success(get(dictionary)[language]["success"]))
-    .catch(() => toastr.error(get(dictionary)[language]["failure"]))
+    .then(() => success(language))
+    .catch(() => error(language))
+}
+
+export function success(language: string, key: string = "success") {
+  toastr.success(get(dictionary)[language][key]);
+}
+
+export function error(language: string, key: string = "failure") {
+  toastr.error(get(dictionary)[language][key]);
 }
 
 export default withPromise;
