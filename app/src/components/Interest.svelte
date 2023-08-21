@@ -15,7 +15,7 @@
   </span>
   <div class="row" slot="content" class:d-none={minimized}>
     <div class="col">
-      <input type=range bind:value={state.interest} min=0.005 max=0.05 step=0.0001>
+      <input type=range bind:value={state.interest} min=0.005 max=0.07 step=0.0001>
     </div>
   </div>
   <div class="row" slot="content" class:d-none={minimized}>
