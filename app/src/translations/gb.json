@@ -14,11 +14,11 @@
   },
   "introduction": {
     "welcome": "Welcome to \"vad kostar bostaden\". This page provides information for those of you who want to buy a place to live in Sweden. It will help you understand the costs in form of fees and taxes that await you. The page is split into sections. Each section contains information that helps you understand a specific aspect and its required inputs. In the end you can choose to save the data for later. All calculations are cross verified with real life scenarios.",
-    "dataPolicy": "We do not save any of the data you enter in the form below. We do not use any cookies or any other form of tracking either. We believe in you owning your data.",
+    "dataPolicy": "We do not save any of the data you enter in the form below. We do not use any cookies or any other form of tracking either. We believe in you owning your data. As we do not have access to any of your data, we think it is unneccessary to secure this page. It is expensive and tricky.",
     "type": "Let us start. First we would like to know what you are looking for or. Alternatively you can choose to restore a previous saved file.",
     "appartment": "Appartment",
     "house": "House",
-    "motivation": "Why do we do this? The year is 2020. We found ourselves creating another cumbersome excel sheet to calculate coming expences. Turns out so do a lot of other. Some use even a calculator. Seems unneccessary and error prone to us. So we created this page for you out there so you do not have to do costly mistakes and invest unnecessary time."
+    "motivation": "Why do we do this? The year is 2020. We found ourselves creating another cumbersome excel sheet to calculate coming expences. Turns out so do a lot of others. Some use even a calculator. Seems unneccessary and error prone to us. So we created this page for you out there so you do not have to do costly mistakes and invest unnecessary time."
   },
   "bills": {
     "title": "Bills",
