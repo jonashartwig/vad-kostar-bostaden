@@ -21,7 +21,7 @@ export default class State {
   @JsonProperty() type: Type;
   @JsonProperty() language: string; 
 
-  constructor(bills: Array<Bill> = [], borrowers: Array<Borrower> = [], price: number = 0, pantbrev: number = 0.02 * price, interest: number = 0.0133, type = Type.APPARTMENT) {
+  constructor(bills: Array<Bill> = [], borrowers: Array<Borrower> = [], price: number = 0, pantbrev: number = 0.02 * price, interest: number = 0.0417, type = Type.APPARTMENT) {
     this.bills = bills;
     this.borrowers = borrowers;
     this.price = price;
